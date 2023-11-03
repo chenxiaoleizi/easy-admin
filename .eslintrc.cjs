@@ -1,3 +1,4 @@
+// 解决 eslint 和 prettier 冲突 https://cloud.tencent.com/developer/article/2346141
 module.exports = {
 	root: true,
 	env: {
