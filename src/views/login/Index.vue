@@ -1,9 +1,7 @@
 <template>
   <div class="login">
     <div class="login-form">
-      <a-typography-title :level="2">
-        登录
-      </a-typography-title>
+      <a-typography-title :level="2"> 登录 </a-typography-title>
       <a-form
         layout="vertical"
         :model="formState"
@@ -17,10 +15,7 @@
           name="username"
           :rules="[{ required: true, message: '请输入用户名!' }]"
         >
-          <a-input
-            v-model:value="formState.username"
-            size="large"
-          />
+          <a-input v-model:value="formState.username" size="large" />
         </a-form-item>
 
         <a-form-item
@@ -28,19 +23,11 @@
           name="password"
           :rules="[{ required: true, message: '请输入密码!' }]"
         >
-          <a-input-password
-            v-model:value="formState.password"
-            size="large"
-          />
+          <a-input-password v-model:value="formState.password" size="large" />
         </a-form-item>
 
         <a-form-item>
-          <a-button
-            type="primary"
-            html-type="submit"
-            block
-            size="large"
-          >
+          <a-button type="primary" html-type="submit" block size="large">
             登录
           </a-button>
         </a-form-item>
