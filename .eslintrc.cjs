@@ -1,35 +1,23 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:vue/vue3-essential"
-    ],
-    "overrides": [
-        {
-            "env": {
-                "node": true
-            },
-            "files": [
-                ".eslintrc.{js,cjs}"
-            ],
-            "parserOptions": {
-                "sourceType": "script"
-            }
-        }
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "parser": "@typescript-eslint/parser",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "vue"
-    ],
-    "rules": {
-    }
-}
+	root: true,
+	env: {
+		browser: true, // browser global variables
+		es2021: true // adds all ECMAScript 2021 globals and automatically sets the ecmaVersion parser option to 12.
+	},
+	parser: "vue-eslint-parser",
+	parserOptions: {
+		ecmaVersion: 12,
+		parser: "@typescript-eslint/parser",
+		ecmaFeatures: {
+			jsx: true
+		}
+	},
+	extends: [
+		"plugin:vue/vue3-recommended"
+	],
+	plugins: ["@typescript-eslint"],
+	rules: {
+		"vue/multi-word-component-names": "off",
+		"vue/no-useless-template-attributes": "off"
+	}
+};
