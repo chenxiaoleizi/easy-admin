@@ -37,25 +37,32 @@
 </template>
 <script lang="ts" setup>
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
+import { useUserStore } from "@/store/index";
+
+const router = useRouter();
+const userStore = useUserStore();
 
 interface FormState {
   username: string;
   password: string;
-  remember: boolean;
 }
 
 const formState = reactive<FormState>({
   username: "",
-  password: "",
-  remember: true
+  password: ""
 });
-const onFinish = (values: any) => {
+function onFinish(values: FormState) {
   console.log("Success:", values);
-};
 
-const onFinishFailed = (errorInfo: any) => {
+  userStore.login(values).then(() => {
+    router.push({ name: "home" });
+  });
+}
+
+function onFinishFailed(errorInfo: any) {
   console.log("Failed:", errorInfo);
-};
+}
 </script>
 
 <style>
