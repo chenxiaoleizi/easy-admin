@@ -9,9 +9,15 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: "/",
-    name: "a",
+    name: "layout",
     component: Layout,
     children: [
+      {
+        path: "home",
+        name: "home",
+        alias: ["/"],
+        component: () => import("@/views/home/Index.vue")
+      },
       {
         path: "userList",
         name: "userList",
