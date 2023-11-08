@@ -9,8 +9,8 @@ export const useUserStore = defineStore("userStore", {
     };
   },
   actions: {
-    login(params) {
-      login(params).then(() => {
+    login(params: any) {
+      return login(params).then(() => {
         // 设置 token，保存用户信息
         // 请求跳转到首页前需要的数据
       });

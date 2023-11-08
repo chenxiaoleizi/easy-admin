@@ -8,7 +8,7 @@
         name="basic"
         autocomplete="off"
         @finish="onFinish"
-        @finishFailed="onFinishFailed"
+        @finish-failed="onFinishFailed"
       >
         <a-form-item
           label="用户名"
@@ -38,7 +38,7 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import { useUserStore } from "@/store/index";
+import { useUserStore } from "@/store/user";
 
 const router = useRouter();
 const userStore = useUserStore();
