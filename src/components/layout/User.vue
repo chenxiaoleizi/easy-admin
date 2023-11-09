@@ -9,7 +9,7 @@
       <template #overlay>
         <a-menu>
           <a-menu-item>修改密码</a-menu-item>
-          <a-menu-item>退出</a-menu-item>
+          <a-menu-item @click="userStore.logout">退出</a-menu-item>
         </a-menu>
       </template>
     </a-dropdown>
@@ -18,6 +18,9 @@
 
 <script setup lang="ts">
 import { DownOutlined } from "@ant-design/icons-vue";
+import { useUserStore } from "@/store/user";
+
+const userStore = useUserStore();
 </script>
 
 <style scoped>

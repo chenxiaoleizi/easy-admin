@@ -1,6 +1,8 @@
 <template>
   <a-layout-header class="header" style="background: white">
-    <div>Header Left</div>
+    <div>
+      <Breadcrumb></Breadcrumb>
+    </div>
     <div>
       <User></User>
     </div>
@@ -8,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+import Breadcrumb from "./Breadcrumb.vue";
 import User from "./User.vue";
 </script>
 
