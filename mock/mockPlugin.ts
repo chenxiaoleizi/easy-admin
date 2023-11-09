@@ -12,7 +12,9 @@ export default function mockPlugin() {
         const { url } = req;
 
         if (url && Reflect.has(mockData, url)) {
-          const result = mockData[url]();
+          const result = mockData[url](req, res);
+
+          res.setHeader("Content-Type", "application/json");
           res.end(JSON.stringify(result));
         } else {
           next();

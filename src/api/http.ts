@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useUserStore } from "../store/user";
+import { message } from "ant-design-vue";
 
 // 创建实例
 const instance = axios.create();
@@ -21,7 +22,14 @@ instance.interceptors.request.use(
 // 响应拦截器
 instance.interceptors.response.use(
   (response) => {
-    return response;
+    const data = response.data;
+
+    if (data.code !== 0) {
+      message.error(data.message || "请求出错！");
+      return Promise.reject(data.message);
+    }
+
+    return data;
   },
   (error) => {
     return Promise.reject(error);
