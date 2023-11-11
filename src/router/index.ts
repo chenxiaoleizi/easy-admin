@@ -8,6 +8,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/views/login/Index.vue")
   },
   {
+    path: "/:pathMatch(.*)*",
+    name: "notFound",
+    component: () => import("@/views/notFound/Index.vue")
+  },
+  {
     path: "/",
     name: "layout",
     meta: {
@@ -16,7 +21,7 @@ const routes: RouteRecordRaw[] = [
     component: Layout,
     children: [
       {
-        path: "home",
+        path: "",
         name: "home",
         meta: {
           title: "首页"
@@ -38,17 +43,16 @@ const routes: RouteRecordRaw[] = [
               title: "用户列表"
             },
             component: () => import("@/views/system/user/UserList.vue")
+          },
+          {
+            path: "roleList",
+            name: "roleList",
+            meta: {
+              title: "角色列表"
+            },
+            component: () => import("@/views/system/role/RoleList.vue")
           }
         ]
-        // component: () => import("@/views/system/user/UserList.vue")
-      },
-      {
-        path: "userList",
-        name: "userList",
-        meta: {
-          title: "用户列表"
-        },
-        component: () => import("@/views/system/user/UserList.vue")
       }
     ]
   }

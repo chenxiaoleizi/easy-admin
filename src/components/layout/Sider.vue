@@ -47,5 +47,7 @@ function handleClick({ item }) {
 <style scoped>
 .logo {
   height: 64px;
+  line-height: 64px;
+  text-align: center;
 }
 </style>

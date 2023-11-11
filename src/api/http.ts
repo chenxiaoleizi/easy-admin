@@ -37,10 +37,10 @@ instance.interceptors.response.use(
 );
 
 const http = {
-  get(url: string, params: Object) {
+  get(url: string, params?: Object) {
     return instance.get(url, { params });
   },
-  post(url: string, params: Object) {
+  post(url: string, params?: Object) {
     return instance.post(url, params);
   }
 };
