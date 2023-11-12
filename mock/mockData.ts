@@ -9,8 +9,40 @@ function login() {
   };
 }
 
+function auth() {
+  return {
+    code: 0,
+    message: "",
+    data: [
+      {
+        path: "/",
+        name: "home",
+        label: "首页"
+      },
+      {
+        path: "/system",
+        name: "system",
+        label: "系统设置",
+        children: [
+          {
+            path: "/system/userList",
+            name: "userList",
+            label: "用户列表"
+          },
+          {
+            path: "/system/roleList",
+            name: "roleList",
+            label: "角色列表"
+          }
+        ]
+      }
+    ]
+  };
+}
+
 const mockData = {
-  "/login": login
+  "/login": login,
+  "/auth": auth
 };
 
 export default mockData;

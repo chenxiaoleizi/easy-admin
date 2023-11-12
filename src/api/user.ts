@@ -6,6 +6,6 @@ export function login(params: { username: string; password: string }) {
 }
 
 // 获取权限信息
-export function getAuth() {
+export function getAuthData() {
   return http.post("/auth");
 }
