@@ -53,7 +53,8 @@ export function generateMenuData(userRoutes: RouteRecordRaw[], authMap) {
     const menuItem = {
       title: auth?.label,
       label: auth?.label,
-      path: auth?.path
+      path: auth?.path,
+      key: route.name
     };
     console.log(route.meta);
     if (
@@ -80,16 +81,23 @@ export const router = createRouter({
 
 router.beforeEach(async (to) => {
   const userStore = useUserStore();
-  // debugger;
-  if (!userStore.token && to.name !== "login") {
-    // 未登录，并且不是跳转到登录页
-    return { name: "login" };
-  } else {
-    if (!window.userRoutesRegisted) {
+
+  if (userStore.token) {
+    // 已登录
+    if (!window["userRoutesRegisted"]) {
       await userStore.processAuth();
-      console.log(router.getRoutes());
-      window.userRoutesRegisted = true;
+      window["userRoutesRegisted"] = true;
       router.replace(to.path);
+      return;
+    }
+
+    if (to.name === "login") {
+      return { name: "home" };
+    }
+  } else {
+    // 未登录
+    if (to.name !== "login") {
+      return { name: "login" };
     }
   }
 });
