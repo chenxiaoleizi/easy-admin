@@ -7,7 +7,8 @@ const dynamicRoutes: RouteRecordRaw[] = [
     name: "home",
     redirect: "/index",
     meta: {
-      title: "首页"
+      title: "首页",
+      showParent: true
     },
     component: Layout,
     children: [

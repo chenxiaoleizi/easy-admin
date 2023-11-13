@@ -32,7 +32,9 @@ export function generateUserRoutes(dynamicRoutes: RouteRecordRaw[], authMap) {
 
     const hasAuth = authMap.has(route.name);
     if (hasAuth) {
-      route.meta = {};
+      if (!route.meta) {
+        route.meta = {};
+      }
       route.meta.title = authMap.get(route.name).title;
       route.meta.label = authMap.get(route.name).label;
       if (route.children && route.children.length > 0) {
@@ -53,8 +55,12 @@ export function generateMenuData(userRoutes: RouteRecordRaw[], authMap) {
       label: auth?.label,
       path: auth?.path
     };
-
-    if (route.children && route.children.length > 0) {
+    console.log(route.meta);
+    if (
+      !route.meta?.showParent &&
+      route.children &&
+      route.children.length > 0
+    ) {
       menuItem.children = generateMenuData(route.children, authMap);
     }
 
@@ -72,7 +78,7 @@ export const router = createRouter({
   history: createWebHashHistory()
 });
 
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to) => {
   const userStore = useUserStore();
   // debugger;
   if (!userStore.token && to.name !== "login") {
