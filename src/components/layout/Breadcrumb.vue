@@ -19,6 +19,7 @@ const route = useRoute();
 
 const routes = computed(() => {
   return route.matched.map((item) => {
+    console.log(item);
     return {
       path: item.path,
       breadcrumbName: item.meta?.title

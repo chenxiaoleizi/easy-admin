@@ -56,7 +56,6 @@ export function generateMenuData(userRoutes: RouteRecordRaw[], authMap) {
       path: auth?.path,
       key: route.name
     };
-    console.log(route.meta);
     if (
       !route.meta?.showParent &&
       route.children &&

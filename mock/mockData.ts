@@ -33,6 +33,11 @@ function auth() {
             path: "/system/roleList",
             name: "roleList",
             label: "角色列表"
+          },
+          {
+            path: "/system/menuList",
+            name: "menuList",
+            label: "菜单列表"
           }
         ]
       }

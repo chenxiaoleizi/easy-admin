@@ -14,16 +14,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
+import { ref, computed, watchEffect } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "@/store/user";
 
 const router = useRouter();
+const route = useRoute();
 const userStore = useUserStore();
 
 const selectedKeys = ref([]);
 const items = computed(() => {
   return userStore.menuData;
+});
+
+watchEffect(() => {
+  console.log("route.path", route);
 });
 
 function handleClick({ item }) {
