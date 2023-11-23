@@ -5,24 +5,16 @@
       <a-form
         layout="vertical"
         :model="formState"
-        name="basic"
+        :rules="rules"
         autocomplete="off"
         @finish="onFinish"
         @finish-failed="onFinishFailed"
       >
-        <a-form-item
-          label="用户名"
-          name="username"
-          :rules="[{ required: true, message: '请输入用户名!' }]"
-        >
+        <a-form-item label="用户名" name="username">
           <a-input v-model:value="formState.username" size="large" />
         </a-form-item>
 
-        <a-form-item
-          label="密码"
-          name="password"
-          :rules="[{ required: true, message: '请输入密码!' }]"
-        >
+        <a-form-item label="密码" name="password">
           <a-input-password v-model:value="formState.password" size="large" />
         </a-form-item>
 
@@ -37,23 +29,30 @@
 </template>
 <script lang="ts" setup>
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
 import { useUserStore } from "@/store/user";
-
-const userStore = useUserStore();
 
 interface FormState {
   username: string;
   password: string;
 }
+const router = useRouter();
+const userStore = useUserStore();
+const rules = {
+  username: [{ required: true, message: "请输入用户名!" }],
+  password: [{ required: true, message: "请输入密码!" }]
+};
 
 const formState = reactive<FormState>({
   username: "",
   password: ""
 });
-function onFinish(values: FormState) {
-  console.log("Success:", values);
 
-  userStore.login(values);
+function onFinish(values: FormState) {
+  userStore.login(values).then(() => {
+    // 登录成功跳转到首页
+    router.push({ name: "home" });
+  });
 }
 
 function onFinishFailed(errorInfo: any) {

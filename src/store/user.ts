@@ -1,11 +1,12 @@
 import { defineStore } from "pinia";
+import { router } from "@/router/index";
 import {
-  router,
   treeToMap,
   generateUserRoutes,
   generateMenuData,
   registryUserRoutes
-} from "@/router/index";
+} from "@/router/utils";
+
 import dynamicRoutes from "@/router/dynamic";
 import { login, getAuthData } from "@/api/user";
 
@@ -28,15 +29,13 @@ export const useUserStore = defineStore("userStore", {
         this.token = token;
         this.username = username;
 
-        await this.processAuth();
-
-        // 请求跳转到首页前需要的数据
-        router.replace({ name: "home" });
+        return await this.processAuth();
       });
     },
     logout() {
       this.token = "";
       this.authData = {};
+      localStorage.removeItem("token");
       router.push({ name: "login" });
     },
     async processAuth() {
@@ -44,15 +43,17 @@ export const useUserStore = defineStore("userStore", {
       const authData = authDataRes.data;
 
       const authMap = treeToMap(authData);
+      const routeMap = treeToMap(dynamicRoutes);
+
       const userRoutes = generateUserRoutes(dynamicRoutes, authMap);
-      const menuData = generateMenuData(dynamicRoutes, authMap);
-      registryUserRoutes(userRoutes);
+      const menuData = generateMenuData(authData, routeMap);
+      registryUserRoutes(userRoutes, router);
 
       this.menuData = menuData;
 
-      console.log("menuData", menuData);
-      console.log("authData", authData);
       console.log("userRoutes", userRoutes);
+      console.log("menuData", menuData);
+      // console.log("authData", authData);
     }
   }
 });

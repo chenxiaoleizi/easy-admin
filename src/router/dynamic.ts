@@ -13,7 +13,7 @@ const dynamicRoutes: RouteRecordRaw[] = [
     component: Layout,
     children: [
       {
-        path: "index",
+        path: "/index",
         meta: {
           title: "首页"
         },
@@ -30,7 +30,7 @@ const dynamicRoutes: RouteRecordRaw[] = [
     component: Layout,
     children: [
       {
-        path: "userList",
+        path: "/system/userList",
         name: "userList",
         meta: {
           title: "用户列表"
@@ -38,7 +38,7 @@ const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/system/user/UserList.vue")
       },
       {
-        path: "roleList",
+        path: "/system/roleList",
         name: "roleList",
         meta: {
           title: "角色列表"
@@ -46,7 +46,7 @@ const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/system/role/RoleList.vue")
       },
       {
-        path: "menuList",
+        path: "/system/menuList",
         name: "menuList",
         meta: {
           title: "菜单列表"
