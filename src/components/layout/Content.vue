@@ -8,5 +8,6 @@
 .content {
   height: calc(100% - var(--header-height));
   overflow: auto;
+  padding: 20px;
 }
 </style>

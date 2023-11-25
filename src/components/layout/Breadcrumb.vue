@@ -22,7 +22,7 @@ const routes = computed(() => {
     console.log(item);
     return {
       path: item.path,
-      breadcrumbName: item.meta?.title
+      breadcrumbName: item.meta?.label
     };
   });
 });

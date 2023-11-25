@@ -1,6 +1,6 @@
 <template>
   <a-layout-header class="header" style="background: white">
-    <div>
+    <div class="header-left">
       <Breadcrumb></Breadcrumb>
     </div>
     <div>
@@ -19,5 +19,9 @@ import User from "./User.vue";
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+}
+.header-left {
+  display: flex;
+  align-items: center;
 }
 </style>
