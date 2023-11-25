@@ -38,8 +38,12 @@ function handleClick({ item }) {
 
 <style scoped>
 .logo {
-  height: 64px;
-  line-height: 64px;
+  height: var(--header-height);
+  line-height: var(--header-height);
   text-align: center;
+}
+.menus {
+  height: calc(100% - var(--header-height));
+  overflow: auto;
 }
 </style>
