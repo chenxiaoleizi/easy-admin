@@ -3,6 +3,7 @@
     <div class="logo">LOGO</div>
     <div class="menus">
       <a-menu
+        v-model:openKeys="openKeys"
         v-model:selectedKeys="selectedKeys"
         mode="inline"
         theme="light"
@@ -14,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watchEffect } from "vue";
+import { ref, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "@/store/user";
 
@@ -22,16 +23,25 @@ const router = useRouter();
 const route = useRoute();
 const userStore = useUserStore();
 
-const selectedKeys = ref([]);
+const openKeys = ref<string[]>([]);
+const selectedKeys = ref<string[]>([]);
 const items = computed(() => {
   return userStore.menuData;
 });
 
-watchEffect(() => {
-  console.log("route.path", route);
-});
+setOpenKeys();
+setSelectedKeys();
+
+function setOpenKeys() {
+  openKeys.value = route.matched.map((item) => item.path);
+}
+
+function setSelectedKeys() {
+  selectedKeys.value = [route.path];
+}
 
 function handleClick({ item }) {
+  console.log(item);
   router.push(item.path);
 }
 </script>

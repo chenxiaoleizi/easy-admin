@@ -79,6 +79,7 @@ export function generateMenuData(authData: any[], authMap) {
   return authData.map((auth) => {
     const menuItem = {
       title: auth?.label,
+
       label: auth?.label,
       path: auth?.path,
       key: auth?.path
