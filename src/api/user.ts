@@ -9,3 +9,8 @@ export function login(params: { username: string; password: string }) {
 export function getAuthData() {
   return http.post("/auth");
 }
+
+// 用户列表
+export function getUserList() {
+  return http.get("/userList");
+}
