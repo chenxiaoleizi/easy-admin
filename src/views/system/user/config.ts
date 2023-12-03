@@ -66,6 +66,14 @@ export const tableConfig = {
         {
           label: "添加",
           name: "add"
+        },
+        {
+          label: "删除",
+          name: "delete"
+        },
+        {
+          label: "编辑",
+          name: "edit"
         }
       ]
     }

@@ -1,11 +1,11 @@
 <template>
   <span>
-    <a-button
-      v-for="(action, i) in actions"
-      :key="i"
-      @click="handleClick(action)"
-      >{{ action.label }}</a-button
-    >
+    <template v-for="(action, i) in actions" :key="i">
+      <a-button type="text" @click="handleClick(action)">
+        {{ action.label }}
+      </a-button>
+      <a-divider v-if="i !== actions.length - 1" type="vertical" />
+    </template>
   </span>
 </template>
 
