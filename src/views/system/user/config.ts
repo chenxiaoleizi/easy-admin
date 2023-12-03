@@ -5,12 +5,38 @@ export const searchConfig = [
     type: "a-input",
     label: "姓名",
     name: "userName",
+    value: undefined,
+    props: {}
+  },
+  {
+    type: "a-select",
+    label: "人员类型",
+    name: "age",
+    props: {
+      options: [
+        {
+          label: "1",
+          value: 1
+        }
+      ]
+    }
+  },
+  {
+    type: "a-input",
+    label: "办公室",
+    name: "age1",
     props: {}
   },
   {
     type: "a-input",
     label: "年龄",
-    name: "age",
+    name: "age2",
+    props: {}
+  },
+  {
+    type: "a-input",
+    label: "年龄",
+    name: "age3",
     props: {}
   }
 ];
@@ -31,6 +57,17 @@ export const tableConfig = {
       title: "住址",
       dataIndex: "address",
       key: "address"
+    },
+    {
+      title: "操作",
+      dataIndex: "actions",
+      key: "actions",
+      actions: [
+        {
+          label: "添加",
+          name: "add"
+        }
+      ]
     }
   ],
   fetchDataSourceFn: getUserList
