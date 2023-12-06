@@ -11,10 +11,14 @@
           v-for="item in searchConfig"
           :key="item.name"
           class="gutter-row"
-          :span="8"
+          :span="6"
         >
           <a-form-item :label="item.label" :name="item.name">
-            <component :is="item.type" v-bind="item.props"></component>
+            <component
+              :is="item.type"
+              v-model:value="formState[item.name]"
+              v-bind="item.props"
+            ></component>
           </a-form-item>
         </a-col>
       </a-row>

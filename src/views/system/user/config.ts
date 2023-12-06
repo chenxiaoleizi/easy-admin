@@ -46,22 +46,26 @@ export const tableConfig = {
     {
       title: "姓名",
       dataIndex: "name",
-      key: "name"
+      key: "name",
+      align: "center"
     },
     {
       title: "年龄",
       dataIndex: "age",
-      key: "age"
+      key: "age",
+      align: "center"
     },
     {
       title: "住址",
       dataIndex: "address",
-      key: "address"
+      key: "address",
+      align: "center"
     },
     {
       title: "操作",
       dataIndex: "actions",
       key: "actions",
+      align: "center",
       actions: [
         {
           label: "添加",

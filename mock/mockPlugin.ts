@@ -1,6 +1,13 @@
 import { ViteDevServer } from "vite";
 import mockData from "./mockData";
 
+// 查找是否有匹配的 path
+function matchPath(mockData, url) {
+  const keys = Object.keys(mockData);
+
+  return keys.find((item) => url.startsWith(item));
+}
+
 export default function mockPlugin() {
   return {
     name: "mockPlugin",
@@ -11,8 +18,10 @@ export default function mockPlugin() {
       server.middlewares.use((req, res, next) => {
         const { url } = req;
 
-        if (url && Reflect.has(mockData, url)) {
-          const result = mockData[url](req, res);
+        const matched = matchPath(mockData, url);
+
+        if (url && matched) {
+          const result = mockData[matched](req, res);
 
           res.setHeader("Content-Type", "application/json");
           res.end(JSON.stringify(result));

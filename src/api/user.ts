@@ -11,6 +11,6 @@ export function getAuthData() {
 }
 
 // 用户列表
-export function getUserList() {
-  return http.get("/userList");
+export function getUserList(params) {
+  return http.get("/userList", params);
 }

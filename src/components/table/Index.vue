@@ -1,6 +1,9 @@
 <template>
   <div class="table">
-    <SearchForm :search-config="searchConfig"></SearchForm>
+    <SearchForm
+      :search-config="searchConfig"
+      @search="handleSearch"
+    ></SearchForm>
     <a-table
       v-bind="tableConfig"
       :data-source="dataSource"
@@ -60,11 +63,17 @@ const pagination = reactive({
 
 getDataSource();
 
-function getDataSource() {
+function getDataSource(searchParams = {}) {
   const params = {
     current: pagination.current,
     pageSize: pagination.pageSize
   };
+
+  for (let k in searchParams) {
+    if (searchParams[k] !== undefined) {
+      params[k] = searchParams[k];
+    }
+  }
 
   props.tableConfig
     .fetchDataSourceFn(params)
@@ -91,6 +100,11 @@ function renderBuildInActions(column) {
     column.actions &&
     column.actions.length > 0
   );
+}
+
+function handleSearch(formState) {
+  console.log(formState);
+  getDataSource(formState);
 }
 
 // 点击 action 按钮
