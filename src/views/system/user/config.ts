@@ -6,7 +6,9 @@ export const searchConfig = [
     label: "姓名",
     name: "userName",
     value: undefined,
-    props: {}
+    props: {
+      placeholder: "请输入姓名"
+    }
   },
   {
     type: "a-select",
@@ -29,14 +31,8 @@ export const searchConfig = [
   },
   {
     type: "a-input",
-    label: "年龄",
+    label: "办公室",
     name: "age2",
-    props: {}
-  },
-  {
-    type: "a-input",
-    label: "年龄",
-    name: "age3",
     props: {}
   }
 ];

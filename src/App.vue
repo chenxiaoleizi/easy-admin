@@ -1,7 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const theme = {
+  token: {
+    borderRadius: 2
+  }
+};
+</script>
 
 <template>
-  <RouterView></RouterView>
+  <a-config-provider :theme="theme">
+    <RouterView></RouterView>
+  </a-config-provider>
 </template>
 
 <style scoped>
