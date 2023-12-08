@@ -12,7 +12,7 @@
 import Table from "@/components/table/Index.vue";
 import { searchConfig, tableConfig } from "./config";
 
-function handleClickAction(action) {
+function handleClickAction(action: { label: string; name: string }) {
   console.log(action);
 }
 </script>

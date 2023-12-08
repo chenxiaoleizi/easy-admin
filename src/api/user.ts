@@ -14,3 +14,8 @@ export function getAuthData() {
 export function getUserList(params) {
   return http.get("/userList", params);
 }
+
+// 角色列表
+export function getRoleList(params) {
+  return http.get("/roleList", params);
+}

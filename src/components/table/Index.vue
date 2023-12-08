@@ -53,8 +53,11 @@ const props = defineProps<{
     [key: string]: any;
   };
 }>();
+const emit = defineEmits<{
+  clickAction: [{ label: string; name: string }];
+}>();
+
 const dataSource = ref([]);
-const emit = defineEmits(["clickAction"]);
 const pagination = reactive({
   total: 100,
   current: 1,
