@@ -53,16 +53,22 @@ function userList() {
       total: 100,
       list: [
         {
-          key: "1",
-          name: "胡彦斌",
-          age: 32,
-          address: "西湖区湖底公园1号"
+          id: "1",
+          username: "爱德华·诺顿",
+          account: "Edward Harrison Norton",
+          state: 1
         },
         {
-          key: "2",
-          name: "胡彦祖",
-          age: 42,
-          address: "西湖区湖底公园2号"
+          id: "2",
+          username: "布拉德·皮特",
+          account: "Brad Pitt",
+          state: 1
+        },
+        {
+          id: "3",
+          username: "海伦娜·伯翰·卡特",
+          account: "Helena Bonham Carter",
+          state: 1
         }
       ]
     }
