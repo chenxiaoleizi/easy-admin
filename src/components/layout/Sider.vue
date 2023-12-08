@@ -1,5 +1,5 @@
 <template>
-  <a-layout-sider theme="light">
+  <a-layout-sider v-model:collapsed="collapsed" theme="light">
     <div class="logo">LOGO</div>
     <div class="menus">
       <a-menu
@@ -11,6 +11,12 @@
         @click="handleClick"
       ></a-menu>
     </div>
+    <div class="menu-fold">
+      <a-button @click="handleClickFold">
+        <MenuUnfoldOutlined v-if="collapsed" />
+        <MenuFoldOutlined v-else />
+      </a-button>
+    </div>
   </a-layout-sider>
 </template>
 
@@ -18,11 +24,13 @@
 import { ref, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "@/store/user";
+import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons-vue";
 
 const router = useRouter();
 const route = useRoute();
 const userStore = useUserStore();
 
+const collapsed = ref(false);
 const openKeys = ref<string[]>([]);
 const selectedKeys = ref<string[]>([]);
 const items = computed(() => {
@@ -40,20 +48,30 @@ function setSelectedKeys() {
   selectedKeys.value = [route.path];
 }
 
-function handleClick({ item }) {
-  console.log(item);
+function handleClick({ item }: { item: any }) {
   router.push(item.path);
+}
+
+function handleClickFold() {
+  collapsed.value = !collapsed.value;
 }
 </script>
 
 <style scoped>
+.side {
+  position: relative;
+}
 .logo {
   height: var(--header-height);
   line-height: var(--header-height);
   text-align: center;
 }
 .menus {
-  height: calc(100% - var(--header-height));
+  height: calc(100% - var(--header-height) - 40px);
   overflow: auto;
+}
+.menu-fold {
+  line-height: 40px;
+  text-align: center;
 }
 </style>
