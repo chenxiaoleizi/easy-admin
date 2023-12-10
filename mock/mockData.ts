@@ -17,27 +17,32 @@ function auth() {
       {
         path: "/",
         name: "home",
-        label: "首页"
+        label: "首页",
+        id: 1
       },
       {
         path: "/system",
         name: "system",
         label: "系统设置",
+        id: 2,
         children: [
           {
             path: "/system/userList",
             name: "userList",
-            label: "用户列表"
+            label: "用户列表",
+            id: 3
           },
           {
             path: "/system/roleList",
             name: "roleList",
-            label: "角色列表"
+            label: "角色列表",
+            id: 4
           },
           {
             path: "/system/menuList",
             name: "menuList",
-            label: "菜单列表"
+            label: "菜单列表",
+            id: 5
           }
         ]
       }
@@ -105,11 +110,56 @@ function roleList() {
   };
 }
 
+function menuList() {
+  return {
+    code: 0,
+    message: "",
+    data: {
+      total: 11,
+      list: [
+        {
+          path: "/",
+          name: "home",
+          label: "首页",
+          id: 1
+        },
+        {
+          path: "/system",
+          name: "system",
+          label: "系统设置",
+          id: 2,
+          children: [
+            {
+              path: "/system/userList",
+              name: "userList",
+              label: "用户列表",
+              id: 3
+            },
+            {
+              path: "/system/roleList",
+              name: "roleList",
+              label: "角色列表",
+              id: 4
+            },
+            {
+              path: "/system/menuList",
+              name: "menuList",
+              label: "菜单列表",
+              id: 5
+            }
+          ]
+        }
+      ]
+    }
+  };
+}
+
 const mockData = {
   "/login": login,
   "/auth": auth,
   "/userList": userList,
-  "/roleList": roleList
+  "/roleList": roleList,
+  "/menuList": menuList
 };
 
 export default mockData;

@@ -1,19 +1,76 @@
-export const columns = [
+import { getMenuList } from "@/api/user";
+
+export const searchConfig = [
   {
-    title: "菜单名",
-    dataIndex: "name",
-    key: "name"
+    type: "a-input",
+    label: "角色名称",
+    name: "rolename",
+    value: undefined,
+    props: {
+      placeholder: "请输入角色名称"
+    }
   },
   {
-    title: "路径",
-    dataIndex: "age",
-    key: "age",
-    width: "12%"
-  },
-  {
-    title: "Address",
-    dataIndex: "address",
-    width: "30%",
-    key: "address"
+    type: "a-select",
+    label: "角色状态",
+    name: "state",
+    props: {
+      placeholder: "请选择角色状态",
+      options: [
+        {
+          label: "禁用",
+          value: 0
+        },
+        {
+          label: "启用",
+          value: 1
+        }
+      ]
+    }
   }
 ];
+
+export const tableConfig = {
+  columns: [
+    {
+      title: "编号",
+      dataIndex: "id",
+      key: "id",
+      align: "center"
+    },
+    {
+      title: "菜单名称",
+      dataIndex: "label",
+      key: "label",
+      align: "center"
+    },
+    {
+      title: "路径",
+      dataIndex: "path",
+      key: "path",
+      align: "center"
+    },
+    {
+      title: "操作",
+      dataIndex: "actions",
+      key: "actions",
+      align: "center",
+      actions: [
+        {
+          label: "添加",
+          name: "add"
+        },
+        {
+          label: "编辑",
+          name: "edit"
+        },
+        {
+          label: "删除",
+          name: "delete"
+        }
+      ]
+    }
+  ],
+  indentSize: 50,
+  fetchDataSourceFn: getMenuList
+};

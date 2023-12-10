@@ -1,6 +1,7 @@
 <template>
   <div class="table">
     <SearchForm
+      v-if="searchConfig && searchConfig.length > 0"
       :search-config="searchConfig"
       @search="handleSearch"
     ></SearchForm>
@@ -48,8 +49,8 @@ import SearchForm from "./SearchForm.vue";
 import Actions from "./Actions.vue";
 
 const props = defineProps<{
-  searchConfig: any[];
-  tableConfig: {
+  searchConfig?: any[];
+  tableConfig?: {
     [key: string]: any;
   };
 }>();
