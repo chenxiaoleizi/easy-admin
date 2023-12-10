@@ -8,7 +8,8 @@ const dynamicRoutes: RouteRecordRaw[] = [
     redirect: "/index",
     meta: {
       title: "首页",
-      showParent: true
+      showParent: true,
+      icon: "home"
     },
     component: Layout,
     children: [
@@ -25,7 +26,8 @@ const dynamicRoutes: RouteRecordRaw[] = [
     path: "/system",
     name: "system",
     meta: {
-      title: "系统设置"
+      title: "系统设置",
+      icon: "settings"
     },
     component: Layout,
     children: [
@@ -33,7 +35,8 @@ const dynamicRoutes: RouteRecordRaw[] = [
         path: "/system/userList",
         name: "userList",
         meta: {
-          title: "用户列表"
+          title: "用户列表",
+          icon: "users"
         },
         component: () => import("@/views/system/user/UserList.vue")
       },
@@ -41,7 +44,8 @@ const dynamicRoutes: RouteRecordRaw[] = [
         path: "/system/roleList",
         name: "roleList",
         meta: {
-          title: "角色列表"
+          title: "角色列表",
+          icon: "role"
         },
         component: () => import("@/views/system/role/RoleList.vue")
       },
@@ -49,9 +53,31 @@ const dynamicRoutes: RouteRecordRaw[] = [
         path: "/system/menuList",
         name: "menuList",
         meta: {
-          title: "菜单列表"
+          title: "菜单列表",
+          icon: "menu"
         },
         component: () => import("@/views/system/menu/Index.vue")
+      }
+    ]
+  },
+  {
+    path: "/directive",
+    name: "directive",
+    // redirect: "/directive/index",
+    meta: {
+      title: "指令",
+      showParent: true,
+      icon: "directive"
+    },
+    component: Layout,
+    children: [
+      {
+        path: "",
+        name: "directiveIndex",
+        meta: {
+          title: "指令"
+        },
+        component: () => import("@/views/directive/Index.vue")
       }
     ]
   }

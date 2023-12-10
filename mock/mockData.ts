@@ -45,6 +45,12 @@ function auth() {
             id: 5
           }
         ]
+      },
+      {
+        path: "/directive",
+        name: "directive",
+        label: "指令",
+        id: 6
       }
     ]
   };
@@ -148,6 +154,12 @@ function menuList() {
               id: 5
             }
           ]
+        },
+        {
+          path: "/directive",
+          name: "directive",
+          label: "指令",
+          id: 6
         }
       ]
     }

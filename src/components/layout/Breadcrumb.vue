@@ -18,10 +18,12 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 
 const routes = computed(() => {
+  console.log(route.matched);
   return route.matched.map((item) => {
     return {
       path: item.path,
-      breadcrumbName: item.meta?.label
+      breadcrumbName: item.meta?.label,
+      key: item.name
     };
   });
 });

@@ -1,3 +1,5 @@
+import { h } from "vue";
+import SvgIcon from "@/components/svgIcon/Index.vue";
 import { RouteRecordRaw } from "vue-router";
 
 type TreeNode = {
@@ -75,17 +77,18 @@ export function generateUserRoutes(
 //     return menuItem;
 //   });
 // }
-export function generateMenuData(authData: any[], authMap) {
+export function generateMenuData(authData: any[], routeMap) {
   return authData.map((auth) => {
+    const route = routeMap.get(auth?.path);
     const menuItem = {
       title: auth?.label,
-
       label: auth?.label,
       path: auth?.path,
-      key: auth?.path
+      key: auth?.path,
+      icon: h(SvgIcon, { name: route?.meta.icon, style: { fontSize: "16px" } })
     };
     if (auth.children && auth.children.length > 0) {
-      menuItem.children = generateMenuData(auth.children, authMap);
+      menuItem.children = generateMenuData(auth.children, routeMap);
     }
 
     return menuItem;

@@ -20,7 +20,8 @@ const src = computed(() => `/src/assets/icons/${props.name}.svg`);
 </script>
 
 <style scoped>
-.icon {
-  font-size: 1em;
+.icon img {
+  width: 1em;
+  height: 1em;
 }
 </style>
