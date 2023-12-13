@@ -1,20 +1,24 @@
 import type { RouteRecordRaw } from "vue-router";
 import Layout from "@/components/layout/Index.vue";
 
+// 当访问父路由的路径时，如果想渲染出子路由的内容，需要做两部
+// 1. 子路由的 path 设为 ""
+// 2. 子路由设置 name 属性
+
 const dynamicRoutes: RouteRecordRaw[] = [
   {
     path: "/",
-    name: "home",
-    redirect: "/index",
     meta: {
       title: "首页",
-      showParent: true,
       icon: "home"
     },
     component: Layout,
     children: [
       {
-        path: "/index",
+        // https://router.vuejs.org/guide/essentials/nested-routes.html#Nested-Named-Routes
+        // path 为空字符串，保证路径为 "/" 时显示嵌套路由
+        path: "",
+        name: "home",
         meta: {
           title: "首页"
         },
@@ -62,18 +66,17 @@ const dynamicRoutes: RouteRecordRaw[] = [
   },
   {
     path: "/directive",
-    name: "directive",
-    // redirect: "/directive/index",
     meta: {
       title: "指令",
-      showParent: true,
       icon: "directive"
     },
     component: Layout,
     children: [
       {
+        // https://router.vuejs.org/guide/essentials/nested-routes.html#Nested-Named-Routes
+        // path 为空字符串，保证路径为 "/directive" 时显示嵌套路由
         path: "",
-        name: "directiveIndex",
+        name: "directive",
         meta: {
           title: "指令"
         },

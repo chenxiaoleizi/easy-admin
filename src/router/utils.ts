@@ -33,10 +33,9 @@ export function generateUserRoutes(
   parent?: RouteRecordRaw
 ) {
   return dynamicRoutes.filter((route) => {
-    if (!route.path) return true;
-
     let hasAuth = false;
-    if (parent && parent.redirect === route.path) {
+    if (parent && route.path === "") {
+      // 空的嵌套路径表示访问父路由的路径时希望渲染出子路由的内容
       hasAuth = true;
     } else {
       hasAuth = authMap.has(route.path);
