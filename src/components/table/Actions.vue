@@ -1,7 +1,7 @@
 <template>
   <span>
     <template v-for="(action, i) in actions" :key="i">
-      <a-button type="text" @click="handleClick(action)">
+      <a-button type="link" @click="handleClick(action)">
         {{ action.label }}
       </a-button>
       <a-divider v-if="i !== actions.length - 1" type="vertical" />
