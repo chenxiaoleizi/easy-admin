@@ -11,7 +11,7 @@
     <a-form-item label="账号" name="account">
       <a-input v-model:value="formState.account"></a-input>
     </a-form-item>
-    <a-form-item label="状态" name="username">
+    <a-form-item label="状态" name="state">
       <a-radio-group v-model:value="formState.state" button-style="solid">
         <a-radio-button :value="1">启用</a-radio-button>
         <a-radio-button :value="0">禁用</a-radio-button>

@@ -14,6 +14,9 @@ dependencies:
   axios:
     specifier: ^1.6.0
     version: 1.6.0
+  dayjs:
+    specifier: ^1.11.10
+    version: 1.11.10
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.2.2)(vue@3.3.7)

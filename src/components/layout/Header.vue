@@ -4,6 +4,7 @@
       <Breadcrumb></Breadcrumb>
     </div>
     <div>
+      <span>{{ clock }}</span>
       <User></User>
     </div>
   </a-layout-header>
@@ -12,6 +13,9 @@
 <script setup lang="ts">
 import Breadcrumb from "./Breadcrumb.vue";
 import User from "./User.vue";
+import { useClock } from "@/composables/index";
+
+const clock = useClock();
 </script>
 
 <style scoped>
