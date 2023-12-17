@@ -83,6 +83,26 @@ const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/directive/Index.vue")
       }
     ]
+  },
+  {
+    path: "/composable",
+    meta: {
+      title: "组合式函数",
+      icon: "composable"
+    },
+    component: Layout,
+    children: [
+      {
+        // https://router.vuejs.org/guide/essentials/nested-routes.html#Nested-Named-Routes
+        // path 为空字符串，保证路径为 "/composable" 时显示嵌套路由
+        path: "",
+        name: "composable",
+        meta: {
+          title: "组合式函数"
+        },
+        component: () => import("@/views/composable/Index.vue")
+      }
+    ]
   }
 ];
 

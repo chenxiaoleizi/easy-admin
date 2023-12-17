@@ -51,6 +51,12 @@ function auth() {
         name: "directive",
         label: "指令",
         id: 6
+      },
+      {
+        path: "/composable",
+        name: "composable",
+        label: "组合式函数",
+        id: 7
       }
     ]
   };
