@@ -1,7 +1,7 @@
 import { ref, onUnmounted } from "vue";
 import dayjs from "dayjs";
 
-export function useClock(format: string = "YYYY-MM-DD HH:MM:ss") {
+export function useClock(format: string = "YYYY-MM-DD HH:mm:ss") {
   const timer = ref<any>();
   const clock = ref("");
 

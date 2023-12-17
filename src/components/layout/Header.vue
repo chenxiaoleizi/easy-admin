@@ -3,8 +3,9 @@
     <div class="header-left">
       <Breadcrumb></Breadcrumb>
     </div>
-    <div>
+    <div class="header-right">
       <span>{{ clock }}</span>
+      <a-divider type="vertical" />
       <User></User>
     </div>
   </a-layout-header>
@@ -25,6 +26,10 @@ const clock = useClock();
   padding: 0 20px;
 }
 .header-left {
+  display: flex;
+  align-items: center;
+}
+.header-right {
   display: flex;
   align-items: center;
 }
