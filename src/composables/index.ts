@@ -1,4 +1,4 @@
-import { ref, onUnmounted } from "vue";
+import { ref, computed, onUnmounted } from "vue";
 import dayjs from "dayjs";
 
 export function useClock(format: string = "YYYY-MM-DD HH:mm:ss") {
@@ -21,4 +21,17 @@ export function useClock(format: string = "YYYY-MM-DD HH:mm:ss") {
   });
 
   return clock;
+}
+
+export function useVModel(props, propName: string, emit) {
+  const value = computed({
+    get() {
+      return props[propName];
+    },
+    set(value) {
+      emit(`update:${propName}`, value);
+    }
+  });
+
+  return value;
 }

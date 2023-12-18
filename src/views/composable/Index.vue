@@ -16,14 +16,15 @@
         </a-card>
       </a-col>
       <a-col :span="8">
-        <a-card title="Loading 指令" :bordered="false">
-          <p>card content</p>
+        <a-card title="v-model 指令" :bordered="false">
+          <p>
+            通常我们会将一些业务组件封装成一个弹窗，比如添加用户的弹窗,
+            此时我们可以通过 useVModel 函数来实现弹窗显示的双向绑定
+          </p>
         </a-card>
       </a-col>
       <a-col :span="8">
-        <a-card title="Card title" :bordered="false">
-          <p>card content</p>
-        </a-card>
+        <a-card title="Card title" :bordered="false"> </a-card>
       </a-col>
     </a-row>
   </div>
