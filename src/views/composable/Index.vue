@@ -16,10 +16,10 @@
         </a-card>
       </a-col>
       <a-col :span="8">
-        <a-card title="v-model 指令" :bordered="false">
+        <a-card title="数据是否被修改" :bordered="false">
+          <p>useIsModified</p>
           <p>
-            通常我们会将一些业务组件封装成一个弹窗，比如添加用户的弹窗,
-            此时我们可以通过 useVModel 函数来实现弹窗显示的双向绑定
+            我们在编辑表单时可能会有这样的需求，当离开当前编辑页时，如果表单数据被修改了，需要弹窗提醒用户“您修改的数据不会被保存”，此时就需要将新的表单数据和旧的表单数据进行对比。
           </p>
         </a-card>
       </a-col>
