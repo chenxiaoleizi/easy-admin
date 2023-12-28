@@ -57,6 +57,34 @@ function auth() {
         name: "composable",
         label: "组合式函数",
         id: 7
+      },
+      {
+        path: "/frequentlyUsed",
+        name: "frequentlyUsed",
+        label: "常用业务",
+        id: 8,
+        children: [
+          {
+            path: "/frequentlyUsed/chart",
+            name: "chart",
+            label: "图表",
+            id: 9
+          }
+        ]
+      },
+      {
+        path: "/components",
+        name: "components",
+        label: "组件",
+        id: 10,
+        children: [
+          {
+            path: "/components/table",
+            name: "table",
+            label: "表格",
+            id: 11
+          }
+        ]
       }
     ]
   };

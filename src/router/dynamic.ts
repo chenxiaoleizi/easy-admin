@@ -65,6 +65,26 @@ const dynamicRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: "/components",
+    name: "components",
+    meta: {
+      title: "组件",
+      icon: "component"
+    },
+    component: Layout,
+    children: [
+      {
+        path: "/components/table",
+        name: "table",
+        meta: {
+          title: "表格",
+          icon: "table"
+        },
+        component: () => import("@/views/components/table/Index.vue")
+      }
+    ]
+  },
+  {
     path: "/directive",
     meta: {
       title: "指令",
@@ -101,6 +121,26 @@ const dynamicRoutes: RouteRecordRaw[] = [
           title: "组合式函数"
         },
         component: () => import("@/views/composable/Index.vue")
+      }
+    ]
+  },
+  {
+    path: "/frequentlyUsed",
+    name: "frequentlyUsed",
+    meta: {
+      title: "常用业务",
+      icon: "settings"
+    },
+    component: Layout,
+    children: [
+      {
+        path: "/frequentlyUsed/chart",
+        name: "chart",
+        meta: {
+          title: "图表",
+          icon: "chart"
+        },
+        component: () => import("@/views/frequentlyUsed/chart/Index.vue")
       }
     ]
   }
