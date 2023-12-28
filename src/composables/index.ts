@@ -1,5 +1,6 @@
-import { ref, computed, onUnmounted } from "vue";
+import { ref, unref, computed, onUnmounted } from "vue";
 import dayjs from "dayjs";
+import { cloneDeep, isEqual } from "lodash-es";
 
 export function useClock(format: string = "YYYY-MM-DD HH:mm:ss") {
   const timer = ref<any>();
@@ -23,7 +24,7 @@ export function useClock(format: string = "YYYY-MM-DD HH:mm:ss") {
   return clock;
 }
 
-export function useVModel(props, propName: string, emit) {
+export function useVModel(props: any, propName: string, emit: any) {
   const value = computed({
     get() {
       return props[propName];
@@ -34,4 +35,10 @@ export function useVModel(props, propName: string, emit) {
   });
 
   return value;
+}
+
+export function useIsModified(raw) {
+  const cached = cloneDeep(unref(raw));
+  const isModified = computed(() => !isEqual(cached, unref(raw)));
+  return isModified;
 }
