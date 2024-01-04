@@ -1,5 +1,5 @@
 <template>
-  <a-layout-sider v-model:collapsed="collapsed" theme="light">
+  <a-layout-sider v-model:collapsed="collapsed" class="side" theme="light">
     <div class="logo">LOGO</div>
     <div class="menus">
       <a-menu
@@ -57,9 +57,10 @@ function handleClickFold() {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .side {
   position: relative;
+  border-right: 1px solid @colorBorder;
 }
 .logo {
   height: var(--header-height);

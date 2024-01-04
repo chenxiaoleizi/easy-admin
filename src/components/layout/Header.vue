@@ -19,11 +19,12 @@ import { useClock } from "@/composables/index";
 const clock = useClock();
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .header {
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  border-bottom: 1px solid @colorBorder;
 }
 .header-left {
   display: flex;
