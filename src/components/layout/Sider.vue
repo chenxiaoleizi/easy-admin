@@ -23,18 +23,18 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import { useUserStore } from "@/store/user";
+import { useRouterStore } from "@/store/router";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons-vue";
 
 const router = useRouter();
 const route = useRoute();
-const userStore = useUserStore();
+const routerStore = useRouterStore();
 
 const collapsed = ref(false);
 const openKeys = ref<string[]>([]);
 const selectedKeys = ref<string[]>([]);
 const items = computed(() => {
-  return userStore.menuData;
+  return routerStore.menuData;
 });
 
 setOpenKeys();

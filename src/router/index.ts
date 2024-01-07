@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import staticRoutes from "./static";
 import { useUserStore } from "@/store/user";
+import { useRouterStore } from "@/store/router";
 
 export const router = createRouter({
   routes: staticRoutes,
@@ -9,13 +10,13 @@ export const router = createRouter({
 
 router.beforeEach(async (to) => {
   const userStore = useUserStore();
+  const routerStore = useRouterStore();
   const hasToken = userStore.token;
 
   if (hasToken) {
     // 已登录
-    if (!window["userRoutesRegisted"]) {
-      await userStore.processAuth();
-      window["userRoutesRegisted"] = true;
+    if (!routerStore.routes) {
+      await routerStore.initRoutes();
       router.replace(to.path);
       return;
     }

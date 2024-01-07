@@ -19,9 +19,7 @@
         </a-form-item>
 
         <a-form-item>
-          <a-button type="primary" html-type="submit" block size="large">
-            登录
-          </a-button>
+          <a-button type="primary" html-type="submit" block size="large"> 登录 </a-button>
         </a-form-item>
       </a-form>
     </div>
@@ -40,18 +38,18 @@ const router = useRouter();
 const userStore = useUserStore();
 const rules = {
   username: [{ required: true, message: "请输入用户名!" }],
-  password: [{ required: true, message: "请输入密码!" }]
+  password: [{ required: true, message: "请输入密码!" }],
 };
 
 const formState = reactive<FormState>({
   username: "",
-  password: ""
+  password: "",
 });
 
 function onFinish(values: FormState) {
   userStore.login(values).then(() => {
     // 登录成功跳转到首页
-    router.push({ name: "home" });
+    router.push("/");
   });
 }
 

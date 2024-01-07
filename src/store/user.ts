@@ -1,59 +1,53 @@
 import { defineStore } from "pinia";
 import { router } from "@/router/index";
-import {
-  treeToMap,
-  generateUserRoutes,
-  generateMenuData,
-  registryUserRoutes
-} from "@/router/utils";
+import { login } from "@/api/user";
 
-import dynamicRoutes from "@/router/dynamic";
-import { login, getAuthData } from "@/api/user";
+function setToken(token: string) {
+  localStorage.setItem("token", token);
+}
+function getToken() {
+  return localStorage.getItem("token");
+}
+function removeToken() {
+  localStorage.removeItem("token");
+}
 
 export const useUserStore = defineStore("userStore", {
-  state() {
-    const token = localStorage.getItem("token");
+  state(): UserStoreState {
     return {
-      token: token || "",
+      token: getToken() as string,
       username: "",
-      authData: {}, // 原始的权限数据
-      menuData: [] // 菜单数据
+      avatar: "",
     };
   },
   actions: {
-    login(params: any) {
-      return login(params).then(async (res) => {
-        // 设置 token，保存用户信息
-        const { token, username } = res.data;
-        localStorage.setItem("token", token);
-        this.token = token;
-        this.username = username;
+    setToken(token: string) {
+      setToken(token);
+      this.token = token;
+    },
+    setUsername(username: string) {
+      this.username = username;
+    },
+    setAvatar(avatar: string) {
+      this.avatar = avatar;
+    },
+    async login(params: any) {
+      const res = await login(params);
 
-        return await this.processAuth();
-      });
+      // 登陆成功，保存 token，用户信息
+      const { token, username, avatar } = res.data;
+      this.setToken(token);
+      this.setUsername(username);
+      this.setAvatar(avatar);
     },
     logout() {
       this.token = "";
-      this.authData = {};
-      localStorage.removeItem("token");
+      this.username = "";
+      this.avatar = "";
+
+      removeToken();
+
       router.push({ name: "login" });
     },
-    async processAuth() {
-      const authDataRes = await getAuthData();
-      const authData = authDataRes.data;
-
-      const authMap = treeToMap(authData);
-      const routeMap = treeToMap(dynamicRoutes);
-
-      const userRoutes = generateUserRoutes(dynamicRoutes, authMap);
-      const menuData = generateMenuData(authData, routeMap);
-      registryUserRoutes(userRoutes, router);
-
-      this.menuData = menuData;
-
-      console.log("userRoutes", userRoutes);
-      console.log("menuData", menuData);
-      // console.log("authData", authData);
-    }
-  }
+  },
 });
