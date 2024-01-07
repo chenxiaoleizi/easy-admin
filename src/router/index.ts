@@ -4,13 +4,14 @@ import { useUserStore } from "@/store/user";
 
 export const router = createRouter({
   routes: staticRoutes,
-  history: createWebHashHistory()
+  history: createWebHashHistory(),
 });
 
 router.beforeEach(async (to) => {
   const userStore = useUserStore();
+  const hasToken = userStore.token;
 
-  if (userStore.token) {
+  if (hasToken) {
     // 已登录
     if (!window["userRoutesRegisted"]) {
       await userStore.processAuth();
