@@ -21,7 +21,7 @@ router.beforeEach(async (to) => {
 
   if (hasToken) {
     // 已登录
-    if (!routeStore.routes) {
+    if (routeStore.routes.length === 0) {
       await routeStore.initRoutes();
       router.replace(to.path);
       return;

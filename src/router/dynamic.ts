@@ -22,6 +22,7 @@ const dynamicRoutes: RouteRecordRaw[] = [
         name: "home",
         meta: {
           title: "首页",
+          icon: "home",
         },
         component: () => import("@/views/home/Index.vue"),
       },

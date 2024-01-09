@@ -1,14 +1,19 @@
 import { h } from "vue";
+import type { ItemType } from "ant-design-vue";
 import SvgIcon from "@/components/svgIcon/Index.vue";
-import { RouteRecordRaw } from "vue-router";
+import { type RouteRecordRaw } from "vue-router";
 
 type TreeNode = {
+  label: string;
+  name: string;
   path: string;
+  id: number;
   children?: TreeNode[];
 };
+type MenuItem = { path: string; children?: MenuItem[] } & ItemType;
 
 // 权限数据转 map 结构
-export function treeToMap(tree: TreeNode[]) {
+export function treeToMap(tree: TreeNode[] | RouteRecordRaw[]) {
   const map = new Map();
   const queue = [...tree];
 
@@ -27,10 +32,10 @@ export function treeToMap(tree: TreeNode[]) {
 }
 
 // 根据动态路由和权限数据，生成用户的路由
-export function filterRoutes(dynamicRoutes: RouteRecordRaw[], authMap, parent?: RouteRecordRaw) {
+export function filterRoutes(dynamicRoutes: RouteRecordRaw[], authMap: Map<string, TreeNode>, parent?: RouteRecordRaw) {
   return dynamicRoutes.filter((route) => {
     let hasAuth = false;
-    if (parent && route.path === "") {
+    if (parent && (parent?.meta?.thisLevelHidden || route.path === "")) {
       // 空的嵌套路径表示访问父路由的路径时希望渲染出子路由的内容
       hasAuth = true;
     } else {
@@ -46,38 +51,25 @@ export function filterRoutes(dynamicRoutes: RouteRecordRaw[], authMap, parent?: 
 }
 
 // 根据用户的路由和权限，生成左侧菜单数据
-// export function generateMenuData(userRoutes: RouteRecordRaw[], authMap) {
-//   return userRoutes.map((route) => {
-//     const auth = authMap.get(route.name);
-//     const menuItem = {
-//       title: auth?.label,
-//       label: auth?.label,
-//       path: auth?.path,
-//       key: route.name
-//     };
-//     if (
-//       !route.meta?.showParent &&
-//       route.children &&
-//       route.children.length > 0
-//     ) {
-//       menuItem.children = generateMenuData(route.children, authMap);
-//     }
+export function generateMenuData(userRoutes: RouteRecordRaw[], authMap: Map<string, TreeNode>) {
+  return userRoutes.flatMap((route) => {
+    if (route?.path === "") {
+      return [];
+    }
 
-//     return menuItem;
-//   });
-// }
-export function generateMenuData(authData: any[], routeMap) {
-  return authData.map((auth) => {
-    const route = routeMap.get(auth?.path);
-    const menuItem = {
-      title: auth?.label,
-      label: auth?.label,
-      path: auth?.path,
-      key: auth?.path,
-      icon: h(SvgIcon, { name: route?.meta.icon, style: { fontSize: "16px" } }),
+    const auth = authMap.get(route.path);
+    const menuItem: MenuItem = {
+      title: auth?.label ?? route?.meta?.title,
+      label: auth?.label ?? route?.meta?.title,
+      path: route?.path,
+      key: auth?.id,
+      icon: h(SvgIcon, { name: route?.meta?.icon as string, style: { fontSize: "16px" } }),
     };
-    if (auth.children && auth.children.length > 0) {
-      menuItem.children = generateMenuData(auth.children, routeMap);
+    if (route.children && route.children.length > 0) {
+      const children = generateMenuData(route.children, authMap);
+      if (children.length > 0) {
+        menuItem.children = children;
+      }
     }
 
     return menuItem;
