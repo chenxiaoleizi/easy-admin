@@ -23,18 +23,18 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import { useRouterStore } from "@/store/router";
+import { useRouteStore } from "@/store/route";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons-vue";
 
 const router = useRouter();
 const route = useRoute();
-const routerStore = useRouterStore();
+const routeStore = useRouteStore();
 
 const collapsed = ref(false);
 const openKeys = ref<string[]>([]);
 const selectedKeys = ref<string[]>([]);
 const items = computed(() => {
-  return routerStore.menuData;
+  return routeStore.menuData;
 });
 
 setOpenKeys();
@@ -76,3 +76,4 @@ function handleClickFold() {
   text-align: center;
 }
 </style>
+@/store/route

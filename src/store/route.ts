@@ -4,7 +4,7 @@ import { router } from "@/router/index";
 import { treeToMap, generateUserRoutes, generateMenuData, registryUserRoutes } from "@/router/utils";
 import dynamicRoutes from "@/router/dynamic";
 
-export const useRouterStore = defineStore("routerStore", {
+export const useRouteStore = defineStore("routeStore", {
   state() {
     return {
       routes: undefined,

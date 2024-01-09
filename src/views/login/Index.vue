@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="login-form">
-      <a-typography-title :level="2"> 登录 </a-typography-title>
+      <div class="form-title">欢迎登录</div>
       <a-form
         layout="vertical"
         :model="formState"
@@ -10,12 +10,20 @@
         @finish="onFinish"
         @finish-failed="onFinishFailed"
       >
-        <a-form-item label="用户名" name="username">
-          <a-input v-model:value="formState.username" size="large" />
+        <a-form-item name="username">
+          <a-input v-model:value="formState.username" size="large" placeholder="请输入用户名">
+            <template #prefix>
+              <UserOutlined style="color: #a8abb2" />
+            </template>
+          </a-input>
         </a-form-item>
 
-        <a-form-item label="密码" name="password">
-          <a-input-password v-model:value="formState.password" size="large" />
+        <a-form-item name="password">
+          <a-input-password v-model:value="formState.password" size="large" placeholder="请输入密码">
+            <template #prefix>
+              <KeyOutlined style="color: #a8abb2" />
+            </template>
+          </a-input-password>
         </a-form-item>
 
         <a-form-item>
@@ -27,6 +35,7 @@
 </template>
 <script lang="ts" setup>
 import { reactive } from "vue";
+import { UserOutlined, KeyOutlined } from "@ant-design/icons-vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/store/user";
 
@@ -58,7 +67,7 @@ function onFinishFailed(errorInfo: any) {
 }
 </script>
 
-<style>
+<style scoped lang="less">
 .login {
   width: 100%;
   height: 100%;
@@ -74,7 +83,12 @@ function onFinishFailed(errorInfo: any) {
   background: white;
   padding: 40px;
   border-radius: 6px;
-  text-align: center;
+  .form-title {
+    color: #515a6e;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
 }
 .login-form .ant-form-item label {
   font-size: 13px;
