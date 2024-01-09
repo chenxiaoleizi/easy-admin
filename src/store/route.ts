@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { getAuthData } from "@/api/router";
-import { router } from "@/router/index";
-import { treeToMap, generateUserRoutes, generateMenuData, registryUserRoutes } from "@/router/utils";
+import { addRoutes } from "@/router/index";
+import { treeToMap, filterRoutes, generateMenuData } from "@/router/utils";
 import dynamicRoutes from "@/router/dynamic";
 
 export const useRouteStore = defineStore("routeStore", {
@@ -13,19 +13,19 @@ export const useRouteStore = defineStore("routeStore", {
   },
   actions: {
     async initRoutes() {
-      const authDataRes = await getAuthData();
-      const authData = authDataRes.data;
+      const routes = [...dynamicRoutes];
+      const { data: authData } = await getAuthData();
 
       const authMap = treeToMap(authData);
-      const routeMap = treeToMap(dynamicRoutes);
+      const routeMap = treeToMap(routes);
 
-      const userRoutes = generateUserRoutes(dynamicRoutes, authMap);
+      const userRoutes = filterRoutes(routes, authMap);
       const menuData = generateMenuData(authData, routeMap);
-
+      console.log(userRoutes);
       this.routes = userRoutes;
       this.menuData = menuData;
 
-      registryUserRoutes(userRoutes, router);
+      addRoutes(userRoutes);
     },
   },
 });

@@ -27,11 +27,7 @@ export function treeToMap(tree: TreeNode[]) {
 }
 
 // 根据动态路由和权限数据，生成用户的路由
-export function generateUserRoutes(
-  dynamicRoutes: RouteRecordRaw[],
-  authMap,
-  parent?: RouteRecordRaw
-) {
+export function filterRoutes(dynamicRoutes: RouteRecordRaw[], authMap, parent?: RouteRecordRaw) {
   return dynamicRoutes.filter((route) => {
     let hasAuth = false;
     if (parent && route.path === "") {
@@ -40,17 +36,11 @@ export function generateUserRoutes(
     } else {
       hasAuth = authMap.has(route.path);
       if (hasAuth) {
-        if (!route.meta) {
-          route.meta = {};
-        }
-        route.meta.title = authMap.get(route.path).title;
-        route.meta.label = authMap.get(route.path).label;
         if (route.children && route.children.length > 0) {
-          route.children = generateUserRoutes(route.children, authMap, route);
+          route.children = filterRoutes(route.children, authMap, route);
         }
       }
     }
-
     return hasAuth;
   });
 }
@@ -84,7 +74,7 @@ export function generateMenuData(authData: any[], routeMap) {
       label: auth?.label,
       path: auth?.path,
       key: auth?.path,
-      icon: h(SvgIcon, { name: route?.meta.icon, style: { fontSize: "16px" } })
+      icon: h(SvgIcon, { name: route?.meta.icon, style: { fontSize: "16px" } }),
     };
     if (auth.children && auth.children.length > 0) {
       menuItem.children = generateMenuData(auth.children, routeMap);
@@ -92,9 +82,4 @@ export function generateMenuData(authData: any[], routeMap) {
 
     return menuItem;
   });
-}
-
-// 注册用户路由
-export function registryUserRoutes(userRoutes: RouteRecordRaw[], router) {
-  userRoutes.forEach((userRoute) => router.addRoute(userRoute));
 }

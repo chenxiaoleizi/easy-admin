@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { type RouteRecordRaw, createRouter, createWebHashHistory } from "vue-router";
 import staticRoutes from "./static";
 import { useUserStore } from "@/store/user";
 import { useRouteStore } from "@/store/route";
@@ -7,6 +7,12 @@ export const router = createRouter({
   routes: staticRoutes,
   history: createWebHashHistory(),
 });
+
+export function addRoutes(routes: RouteRecordRaw[]) {
+  for (const route of routes) {
+    router.addRoute(route);
+  }
+}
 
 router.beforeEach(async (to) => {
   const userStore = useUserStore();

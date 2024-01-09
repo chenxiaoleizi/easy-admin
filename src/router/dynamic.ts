@@ -10,7 +10,8 @@ const dynamicRoutes: RouteRecordRaw[] = [
     path: "/",
     meta: {
       title: "首页",
-      icon: "home"
+      icon: "home",
+      thisLevelHidden: true,
     },
     component: Layout,
     children: [
@@ -20,18 +21,18 @@ const dynamicRoutes: RouteRecordRaw[] = [
         path: "",
         name: "home",
         meta: {
-          title: "首页"
+          title: "首页",
         },
-        component: () => import("@/views/home/Index.vue")
-      }
-    ]
+        component: () => import("@/views/home/Index.vue"),
+      },
+    ],
   },
   {
     path: "/system",
     name: "system",
     meta: {
       title: "系统设置",
-      icon: "settings"
+      icon: "settings",
     },
     component: Layout,
     children: [
@@ -40,36 +41,36 @@ const dynamicRoutes: RouteRecordRaw[] = [
         name: "userList",
         meta: {
           title: "用户列表",
-          icon: "users"
+          icon: "users",
         },
-        component: () => import("@/views/system/user/UserList.vue")
+        component: () => import("@/views/system/user/UserList.vue"),
       },
       {
         path: "/system/roleList",
         name: "roleList",
         meta: {
           title: "角色列表",
-          icon: "role"
+          icon: "role",
         },
-        component: () => import("@/views/system/role/RoleList.vue")
+        component: () => import("@/views/system/role/RoleList.vue"),
       },
       {
         path: "/system/menuList",
         name: "menuList",
         meta: {
           title: "菜单列表",
-          icon: "menu"
+          icon: "menu",
         },
-        component: () => import("@/views/system/menu/Index.vue")
-      }
-    ]
+        component: () => import("@/views/system/menu/Index.vue"),
+      },
+    ],
   },
   {
     path: "/components",
     name: "components",
     meta: {
       title: "组件",
-      icon: "component"
+      icon: "component",
     },
     component: Layout,
     children: [
@@ -78,17 +79,18 @@ const dynamicRoutes: RouteRecordRaw[] = [
         name: "table",
         meta: {
           title: "表格",
-          icon: "table"
+          icon: "table",
         },
-        component: () => import("@/views/components/table/Index.vue")
-      }
-    ]
+        component: () => import("@/views/components/table/Index.vue"),
+      },
+    ],
   },
   {
     path: "/directive",
     meta: {
       title: "指令",
-      icon: "directive"
+      icon: "directive",
+      thisLevelHidden: true,
     },
     component: Layout,
     children: [
@@ -98,17 +100,17 @@ const dynamicRoutes: RouteRecordRaw[] = [
         path: "",
         name: "directive",
         meta: {
-          title: "指令"
+          title: "指令",
         },
-        component: () => import("@/views/directive/Index.vue")
-      }
-    ]
+        component: () => import("@/views/directive/Index.vue"),
+      },
+    ],
   },
   {
     path: "/composable",
     meta: {
       title: "组合式函数",
-      icon: "composable"
+      icon: "composable",
     },
     component: Layout,
     children: [
@@ -118,18 +120,18 @@ const dynamicRoutes: RouteRecordRaw[] = [
         path: "",
         name: "composable",
         meta: {
-          title: "组合式函数"
+          title: "组合式函数",
         },
-        component: () => import("@/views/composable/Index.vue")
-      }
-    ]
+        component: () => import("@/views/composable/Index.vue"),
+      },
+    ],
   },
   {
     path: "/frequentlyUsed",
     name: "frequentlyUsed",
     meta: {
       title: "常用业务",
-      icon: "settings"
+      icon: "settings",
     },
     component: Layout,
     children: [
@@ -138,12 +140,12 @@ const dynamicRoutes: RouteRecordRaw[] = [
         name: "chart",
         meta: {
           title: "图表",
-          icon: "chart"
+          icon: "chart",
         },
-        component: () => import("@/views/frequentlyUsed/chart/Index.vue")
-      }
-    ]
-  }
+        component: () => import("@/views/frequentlyUsed/chart/Index.vue"),
+      },
+    ],
+  },
 ];
 
 export default dynamicRoutes;
