@@ -11,17 +11,29 @@
         @finish-failed="onFinishFailed"
       >
         <a-form-item name="username">
-          <a-input v-model:value="formState.username" size="large" placeholder="请输入用户名">
+          <a-input
+            v-model:value="formState.username"
+            size="large"
+            allow-clear
+            placeholder="请输入用户名"
+          >
             <template #prefix>
               <UserOutlined style="color: #a8abb2" />
+              <a-divider type="vertical" />
             </template>
           </a-input>
         </a-form-item>
 
         <a-form-item name="password">
-          <a-input-password v-model:value="formState.password" size="large" placeholder="请输入密码">
+          <a-input-password
+            v-model:value="formState.password"
+            size="large"
+            allow-clear
+            placeholder="请输入密码"
+          >
             <template #prefix>
               <KeyOutlined style="color: #a8abb2" />
+              <a-divider type="vertical" />
             </template>
           </a-input-password>
         </a-form-item>
@@ -85,13 +97,19 @@ function onFinishFailed(errorInfo: any) {
   border-radius: 6px;
   .form-title {
     color: #515a6e;
-    font-size: 24px;
+    font-size: 34px;
     margin-bottom: 30px;
     text-align: center;
   }
+  :deep(.ant-input) {
+    height: 30px;
+  }
+  :deep(.ant-btn) {
+    height: 45px;
+  }
 }
 .login-form .ant-form-item label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: #141414;
 }

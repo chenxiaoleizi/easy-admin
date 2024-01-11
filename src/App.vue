@@ -9,8 +9,8 @@ import zhCN from "ant-design-vue/es/locale/zh_CN";
 
 const theme = {
   token: {
-    borderRadius: 2
-  }
+    borderRadius: 5,
+  },
 };
 </script>
 
