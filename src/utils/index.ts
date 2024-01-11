@@ -14,3 +14,15 @@ export function formatNumberWithCommas(num: number) {
   const stringNum = num.toString();
   return stringNum.replace(/\B(?=(\d{3})+(?!\d))/, ",");
 }
+
+// 是否是手机号
+export const isPhone = (value: string) => {
+  const reg = /^1[3456789]\d{9}$/;
+  return reg.test(value);
+};
+
+// 是否是邮箱
+export const isEmail = (value: string) => {
+  const reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+  return reg.test(value);
+};
