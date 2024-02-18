@@ -7,8 +7,8 @@ export const searchConfig = [
     name: "rolename",
     value: undefined,
     props: {
-      placeholder: "请输入角色名称"
-    }
+      placeholder: "请输入角色名称",
+    },
   },
   {
     type: "a-select",
@@ -19,15 +19,15 @@ export const searchConfig = [
       options: [
         {
           label: "禁用",
-          value: 0
+          value: 0,
         },
         {
           label: "启用",
-          value: 1
-        }
-      ]
-    }
-  }
+          value: 1,
+        },
+      ],
+    },
+  },
 ];
 
 export const tableConfig = {
@@ -36,41 +36,43 @@ export const tableConfig = {
       title: "编号",
       dataIndex: "id",
       key: "id",
-      align: "center"
+      align: "center",
+      width: 100,
     },
     {
       title: "菜单名称",
       dataIndex: "label",
       key: "label",
-      align: "center"
+      align: "center",
     },
     {
       title: "路径",
       dataIndex: "path",
       key: "path",
-      align: "center"
+      align: "center",
     },
     {
       title: "操作",
       dataIndex: "actions",
       key: "actions",
       align: "center",
+      width: 260,
       actions: [
         {
           label: "添加",
-          name: "add"
+          name: "add",
         },
         {
           label: "编辑",
-          name: "edit"
+          name: "edit",
         },
         {
           label: "删除",
-          name: "delete"
-        }
-      ]
-    }
+          name: "delete",
+        },
+      ],
+    },
   ],
   indentSize: 50,
-  fetchDataSourceFn: getMenuList
+  fetchDataSourceFn: getMenuList,
 };

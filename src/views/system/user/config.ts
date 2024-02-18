@@ -7,16 +7,16 @@ export const searchConfig = [
     name: "username",
     value: undefined,
     props: {
-      placeholder: "请输入用户名"
-    }
+      placeholder: "请输入用户名",
+    },
   },
   {
     type: "a-input",
     label: "账号",
     name: "account",
     props: {
-      placeholder: "请输入账号"
-    }
+      placeholder: "请输入账号",
+    },
   },
   {
     type: "a-select",
@@ -27,15 +27,15 @@ export const searchConfig = [
       options: [
         {
           label: "禁用",
-          value: 0
+          value: 0,
         },
         {
           label: "启用",
-          value: 1
-        }
-      ]
-    }
-  }
+          value: 1,
+        },
+      ],
+    },
+  },
 ];
 
 export const tableConfig = {
@@ -44,19 +44,25 @@ export const tableConfig = {
       title: "编号",
       dataIndex: "id",
       key: "id",
-      align: "center"
+      align: "center",
     },
     {
       title: "用户名",
       dataIndex: "username",
       key: "username",
-      align: "center"
+      align: "center",
     },
     {
       title: "账号",
       dataIndex: "account",
       key: "account",
-      align: "center"
+      align: "center",
+    },
+    {
+      title: "角色",
+      dataIndex: "role",
+      key: "role",
+      align: "center",
     },
     {
       title: "状态",
@@ -65,7 +71,7 @@ export const tableConfig = {
       align: "center",
       customRender({ text }) {
         return text === 0 ? "禁用" : "启用";
-      }
+      },
     },
     {
       title: "操作",
@@ -75,18 +81,18 @@ export const tableConfig = {
       actions: [
         {
           label: "添加",
-          name: "add"
+          name: "add",
         },
         {
           label: "编辑",
-          name: "edit"
+          name: "edit",
         },
         {
           label: "删除",
-          name: "delete"
-        }
-      ]
-    }
+          name: "delete",
+        },
+      ],
+    },
   ],
-  fetchDataSourceFn: getUserList
+  fetchDataSourceFn: getUserList,
 };

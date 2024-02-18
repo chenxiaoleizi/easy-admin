@@ -41,6 +41,7 @@ setOpenKeys();
 setSelectedKeys();
 
 function setOpenKeys() {
+  console.log(route.matched);
   openKeys.value = route.matched.map((item) => item.path);
 }
 

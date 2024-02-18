@@ -108,9 +108,4 @@ function onFinishFailed(errorInfo: any) {
     height: 45px;
   }
 }
-.login-form .ant-form-item label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #141414;
-}
 </style>
