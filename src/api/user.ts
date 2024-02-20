@@ -6,8 +6,17 @@ export function login(params: { username: string; password: string }) {
 }
 
 // 用户列表
+type UserList = {
+  total: number;
+  list: {
+    id: string;
+    username: string;
+    account: string;
+    state: number;
+  };
+};
 export function getUserList(params) {
-  return http.get("/userList", params);
+  return http.get<UserList>("/userList", params);
 }
 
 // 角色列表

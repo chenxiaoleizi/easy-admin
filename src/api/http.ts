@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { AxiosResponse } from "axios";
 import { useUserStore } from "../store/user";
 import { message } from "ant-design-vue";
 
@@ -8,8 +9,12 @@ const instance = axios.create();
 // 请求拦截器
 instance.interceptors.request.use(
   (config) => {
-    if (useUserStore().token) {
-      config.headers.token = useUserStore().token;
+    const userStore = useUserStore();
+    const { token } = userStore;
+
+    if (token) {
+      config.headers.token = token;
+      // TODO 其它自定义头部
     }
 
     return config;
@@ -37,12 +42,12 @@ instance.interceptors.response.use(
 );
 
 const http = {
-  get(url: string, params?: Object) {
+  get<T = any>(url: string, params?: Object): Promise<AxiosResponse<T>> {
     return instance.get(url, { params });
   },
   post(url: string, params?: Object) {
     return instance.post(url, params);
-  }
+  },
 };
 
 export default http;
