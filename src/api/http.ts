@@ -1,5 +1,4 @@
 import axios from "axios";
-import type { AxiosResponse } from "axios";
 import { useUserStore } from "../store/user";
 import { message } from "ant-design-vue";
 
@@ -42,10 +41,10 @@ instance.interceptors.response.use(
 );
 
 const http = {
-  get<T = any>(url: string, params?: Object): Promise<AxiosResponse<T>> {
+  get<T = any>(url: string, params?: Object): Promise<T> {
     return instance.get(url, { params });
   },
-  post(url: string, params?: Object) {
+  post<T = any>(url: string, params?: Object): Promise<T> {
     return instance.post(url, params);
   },
 };

@@ -69,7 +69,7 @@ export const tableConfig = {
       dataIndex: "state",
       key: "state",
       align: "center",
-      customRender({ text }) {
+      customRender({ text }: { text: number }) {
         return text === 0 ? "禁用" : "启用";
       },
     },
