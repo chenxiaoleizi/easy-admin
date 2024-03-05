@@ -64,6 +64,15 @@ const dynamicRoutes: RouteRecordRaw[] = [
         },
         component: () => import("@/views/system/menu/Index.vue"),
       },
+      {
+        path: "/system/dict",
+        name: "dict",
+        meta: {
+          title: "字典管理",
+          icon: "menu",
+        },
+        component: () => import("@/views/system/dict/Index.vue"),
+      },
     ],
   },
   {

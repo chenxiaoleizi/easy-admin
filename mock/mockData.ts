@@ -4,8 +4,8 @@ function login() {
     message: "",
     data: {
       username: "陈磊",
-      token: "O5XTTaRFHAu70mmXcX0EYLE7WrSKk5T2q030ed4KxgPgDKGiyvhxtyV8YQ1xSbD3"
-    }
+      token: "O5XTTaRFHAu70mmXcX0EYLE7WrSKk5T2q030ed4KxgPgDKGiyvhxtyV8YQ1xSbD3",
+    },
   };
 }
 
@@ -18,7 +18,7 @@ function auth() {
         path: "/",
         name: "home",
         label: "首页",
-        id: 1
+        id: 1,
       },
       {
         path: "/system",
@@ -30,33 +30,39 @@ function auth() {
             path: "/system/userList",
             name: "userList",
             label: "用户列表",
-            id: 3
+            id: 3,
           },
           {
             path: "/system/roleList",
             name: "roleList",
             label: "角色列表",
-            id: 4
+            id: 4,
           },
           {
             path: "/system/menuList",
             name: "menuList",
             label: "菜单列表",
-            id: 5
-          }
-        ]
+            id: 5,
+          },
+          {
+            path: "/system/dict",
+            name: "dict",
+            label: "字典",
+            id: 12,
+          },
+        ],
       },
       {
         path: "/directive",
         name: "directive",
         label: "指令",
-        id: 6
+        id: 6,
       },
       {
         path: "/composable",
         name: "composable",
         label: "组合式函数",
-        id: 7
+        id: 7,
       },
       {
         path: "/frequentlyUsed",
@@ -68,9 +74,9 @@ function auth() {
             path: "/frequentlyUsed/chart",
             name: "chart",
             label: "图表",
-            id: 9
-          }
-        ]
+            id: 9,
+          },
+        ],
       },
       {
         path: "/components",
@@ -82,11 +88,11 @@ function auth() {
             path: "/components/table",
             name: "table",
             label: "表格",
-            id: 11
-          }
-        ]
-      }
-    ]
+            id: 11,
+          },
+        ],
+      },
+    ],
   };
 }
 
@@ -101,22 +107,22 @@ function userList() {
           id: "1",
           username: "爱德华·诺顿",
           account: "Edward Harrison Norton",
-          state: 1
+          state: 1,
         },
         {
           id: "2",
           username: "布拉德·皮特",
           account: "Brad Pitt",
-          state: 1
+          state: 1,
         },
         {
           id: "3",
           username: "海伦娜·伯翰·卡特",
           account: "Helena Bonham Carter",
-          state: 1
-        }
-      ]
-    }
+          state: 1,
+        },
+      ],
+    },
   };
 }
 
@@ -131,22 +137,22 @@ function roleList() {
           id: "1",
           rolename: "超级管理员",
           remark: "超级管理员拥有所有权限",
-          state: 1
+          state: 1,
         },
         {
           id: "2",
           rolename: "管理员",
           remark: "普通管理员可增删改查",
-          state: 1
+          state: 1,
         },
         {
           id: "3",
           rolename: "普通用户",
           remark: "普通用户可部分增删改查",
-          state: 1
-        }
-      ]
-    }
+          state: 1,
+        },
+      ],
+    },
   };
 }
 
@@ -161,7 +167,7 @@ function menuList() {
           path: "/",
           name: "home",
           label: "首页",
-          id: 1
+          id: 1,
         },
         {
           path: "/system",
@@ -173,30 +179,30 @@ function menuList() {
               path: "/system/userList",
               name: "userList",
               label: "用户列表",
-              id: 3
+              id: 3,
             },
             {
               path: "/system/roleList",
               name: "roleList",
               label: "角色列表",
-              id: 4
+              id: 4,
             },
             {
               path: "/system/menuList",
               name: "menuList",
               label: "菜单列表",
-              id: 5
-            }
-          ]
+              id: 5,
+            },
+          ],
         },
         {
           path: "/directive",
           name: "directive",
           label: "指令",
-          id: 6
-        }
-      ]
-    }
+          id: 6,
+        },
+      ],
+    },
   };
 }
 
@@ -205,7 +211,7 @@ const mockData = {
   "/auth": auth,
   "/userList": userList,
   "/roleList": roleList,
-  "/menuList": menuList
+  "/menuList": menuList,
 };
 
 export default mockData;

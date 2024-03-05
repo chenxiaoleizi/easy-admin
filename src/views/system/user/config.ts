@@ -1,4 +1,10 @@
+import type { ColumnType } from "ant-design-vue/es/table";
 import { getUserList } from "@/api/user";
+
+type TableConfig = {
+  columns: ColumnType[];
+  fetchDataSourceFn: () => Promise<any>;
+};
 
 export const searchConfig = [
   {
@@ -38,7 +44,7 @@ export const searchConfig = [
   },
 ];
 
-export const tableConfig = {
+export const tableConfig: TableConfig = {
   columns: [
     {
       title: "编号",
@@ -78,6 +84,7 @@ export const tableConfig = {
       dataIndex: "actions",
       key: "actions",
       align: "center",
+      width: 100,
       actions: [
         {
           label: "添加",
