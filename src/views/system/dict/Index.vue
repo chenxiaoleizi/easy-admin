@@ -1,25 +1,23 @@
 <template>
-  <a-table :columns="columns" :data-source="data" class="components-table-demo-nested">
+  <a-table :columns="columns" :data-source="data" bordered>
     <template #bodyCell="{ column }">
       <template v-if="column.key === 'operation'">
-        <a-button type="text">删除</a-button>
-        <a-button type="text">编辑</a-button>
-        <a-button type="text">添加字典项</a-button>
+        <a-space>
+          <a-button danger type="primary">删除</a-button>
+          <a-button type="primary">编辑</a-button>
+          <a-button type="primary">添加字典项</a-button>
+        </a-space>
       </template>
     </template>
     <template #expandedRowRender>
-      <a-table :columns="innerColumns" :data-source="innerData" :pagination="false">
+      <a-table :columns="innerColumns" :data-source="innerData" :pagination="false" bordered>
         <template #bodyCell="{ column }">
-          <template v-if="column.key === 'state'">
-            <span>
-              <a-badge status="success" />
-              Finished
-            </span>
-          </template>
-          <template v-else-if="column.key === 'operation'">
+          <template v-if="column.key === 'operation'">
             <span class="table-operation">
-              <a-button type="text">删除</a-button>
-              <a-button type="text">编辑</a-button>
+              <a-space>
+                <a-button danger type="text">删除</a-button>
+                <a-button type="link">编辑</a-button>
+              </a-space>
             </span>
           </template>
         </template>
@@ -28,15 +26,8 @@
   </a-table>
 </template>
 <script lang="ts" setup>
+import { columns, innerColumns } from "./config.ts";
 import dayjs from "dayjs";
-
-const columns = [
-  { title: "ID", dataIndex: "id", key: "id", align: "center" },
-  { title: "字典名称", dataIndex: "name", key: "name", align: "center" },
-  { title: "字典key", dataIndex: "key", key: "key", align: "center" },
-  { title: "创建时间", dataIndex: "createTime", key: "key", align: "center" },
-  { title: "Action", key: "operation", align: "center" },
-];
 
 interface DataItem {
   id: number;
@@ -46,26 +37,14 @@ interface DataItem {
 }
 
 const data: DataItem[] = [];
-for (let i = 0; i < 3; ++i) {
+for (let i = 0; i < 3; i++) {
   data.push({
     id: i,
     name: `Screem ${i + 1}`,
-    key: "iOS",
+    key: "dict-key" + i,
     createTime: dayjs().format("YYYY-MM-DD HH:mm:ss"),
   });
 }
-
-const innerColumns = [
-  { title: "id", dataIndex: "id", key: "id", align: "center" },
-  { title: "字典项key", key: "key", align: "center" },
-  { title: "字典项值", dataIndex: "value", key: "value", align: "center" },
-  {
-    title: "Action",
-    dataIndex: "operation",
-    key: "operation",
-    align: "center",
-  },
-];
 
 interface innerDataItem {
   id: number;
@@ -77,7 +56,7 @@ const innerData: innerDataItem[] = [];
 for (let i = 0; i < 3; ++i) {
   innerData.push({
     id: i,
-    key: "key" + i,
+    key: "dict-item-key" + i,
     value: "value" + i,
   });
 }
