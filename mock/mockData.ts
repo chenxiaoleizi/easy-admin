@@ -226,12 +226,28 @@ function menuList() {
   };
 }
 
+function dictList() {
+  return {
+    code: 0,
+    data: [
+      {
+        dictKey: "userType",
+        dictItems: [
+          { dictItemKey: 0, dictItemName: "地球人" },
+          { dictItemKey: 1, dictItemName: "外星人" },
+        ],
+      },
+    ],
+  };
+}
+
 const mockData: Record<string, any> = {
   "/login": login,
   "/auth": auth,
   "/userList": userList,
   "/roleList": roleList,
   "/menuList": menuList,
+  "/dictList": dictList,
 };
 
 export default mockData;

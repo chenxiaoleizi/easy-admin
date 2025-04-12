@@ -133,6 +133,21 @@ export function useTableScroll(tableRef: Ref, onScroll: () => void) {
   });
 }
 
-// export function useIsChanged(target: Ref | Reactive<any>) {
-//   const reference =
-// }
+/**
+ * table 组件的选择组合式函数
+ * @param options rowSelection 选项
+ * @returns
+ */
+export function useTableRowSelection(options: any) {
+  const rowSelection = reactive({
+    selectedRowKeys: [],
+    selectedRows: [],
+    onChange,
+    ...options,
+  });
+  function onChange(rowKeys: number[], rows: any[]) {
+    rowSelection.selectedRowKeys = rowKeys;
+    rowSelection.selectedRows = rows;
+  }
+  return rowSelection;
+}
