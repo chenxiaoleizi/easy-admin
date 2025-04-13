@@ -74,7 +74,7 @@ export function useVModel(props: any, propName: string, emit: any) {
 
 /**
  * table 组件的分页组合式函数
- * @param handleChange 分页发送变化时你需要执行的函数（请求table数据的函数）
+ * @param handleChange 分页发生变化时你需要执行的函数（请求table数据的函数）
  * @param options table pagination 配置项
  * @returns
  */
@@ -138,10 +138,10 @@ export function useTableScroll(tableRef: Ref, onScroll: () => void) {
  * @param options rowSelection 选项
  * @returns
  */
-export function useTableRowSelection(options: any) {
+export function useTableRowSelection(options = {}) {
   const rowSelection = reactive({
-    selectedRowKeys: [],
-    selectedRows: [],
+    selectedRowKeys: [] as number[],
+    selectedRows: [] as any[],
     onChange,
     ...options,
   });
