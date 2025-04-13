@@ -12,17 +12,23 @@ import type { Ref, Reactive } from "vue";
 import dayjs from "dayjs";
 // import { cloneDeep, isEqual } from "lodash-es";
 
+/**
+ * 获取实时时间
+ * @param format 时间格式
+ * @returns
+ */
 export function useClock(format: string = "YYYY-MM-DD HH:mm:ss") {
   const timer = ref<any>();
   const clock = ref("");
 
-  setClock();
   function setClock() {
     clock.value = dayjs().format(format);
     timer.value = setTimeout(() => {
       setClock();
     }, 1000);
   }
+
+  setClock();
 
   // 清除定时器
   onUnmounted(() => {
@@ -96,6 +102,30 @@ export function useTablePagination(handleChange: () => void, options = {}) {
   return pagination;
 }
 
+/**
+ * table 组件的选择组合式函数
+ * @param options rowSelection 选项
+ * @returns
+ */
+export function useTableRowSelection(options = {}) {
+  const rowSelection = reactive({
+    selectedRowKeys: [] as number[],
+    selectedRows: [] as any[],
+    onChange,
+    ...options,
+  });
+  function onChange(rowKeys: number[], rows: any[]) {
+    rowSelection.selectedRowKeys = rowKeys;
+    rowSelection.selectedRows = rows;
+  }
+  return rowSelection;
+}
+
+/**
+ * table 组件滚动到底部
+ * @param tableRef
+ * @param onScroll
+ */
 export function useTableScroll(tableRef: Ref, onScroll: () => void) {
   // 定义滚动函数
   function handleScroll() {
@@ -131,23 +161,4 @@ export function useTableScroll(tableRef: Ref, onScroll: () => void) {
       }
     });
   });
-}
-
-/**
- * table 组件的选择组合式函数
- * @param options rowSelection 选项
- * @returns
- */
-export function useTableRowSelection(options = {}) {
-  const rowSelection = reactive({
-    selectedRowKeys: [] as number[],
-    selectedRows: [] as any[],
-    onChange,
-    ...options,
-  });
-  function onChange(rowKeys: number[], rows: any[]) {
-    rowSelection.selectedRowKeys = rowKeys;
-    rowSelection.selectedRows = rows;
-  }
-  return rowSelection;
 }
