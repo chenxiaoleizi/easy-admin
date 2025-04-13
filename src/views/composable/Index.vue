@@ -19,4 +19,7 @@
 <script setup lang="ts">
 import Clock from "./conponents/Clock.vue";
 import SMS from "./conponents/SMS.vue";
+import { isJson } from "@/utils/validate";
+
+console.log(isJson("{1: 1}"));
 </script>

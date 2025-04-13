@@ -115,11 +115,12 @@ export const isTel = (value: string) => {
  * @returns {boolean}
  */
 export const isJson = (value: any) => {
-  if (typeof value === "string") {
-    const obj = JSON.parse(value);
-    return !!(typeof obj === "object" && obj);
+  try {
+    JSON.parse(value);
+    return true;
+  } catch (error) {
+    return false;
   }
-  return false;
 };
 
 /**
