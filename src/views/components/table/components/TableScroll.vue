@@ -1,12 +1,13 @@
 <template>
-  <a-typography-paragraph> useTableScroll 组合式函数的使用 </a-typography-paragraph>
-  <a-table
-    ref="tableRef"
-    rowKey="id"
-    :columns="columns"
-    :dataSource="dataSource"
-    :scroll="{ y: 300 }"
-  ></a-table>
+  <a-card title="useTableScroll 组合式函数">
+    <a-table
+      ref="tableRef"
+      rowKey="id"
+      :columns="columns"
+      :dataSource="dataSource"
+      :scroll="{ y: 300 }"
+    ></a-table>
+  </a-card>
 </template>
 
 <script setup lang="ts">

@@ -1,6 +1,7 @@
 <template>
-  <a-typography-paragraph> useTablePagination 组合式函数的使用 </a-typography-paragraph>
-  <a-table :columns="columns" :pagination="pagination" :dataSource="dataSource"></a-table>
+  <a-card title="useTablePagination 组合式函数">
+    <a-table :columns="columns" :pagination="pagination" :dataSource="dataSource"></a-table>
+  </a-card>
 </template>
 
 <script setup lang="ts">

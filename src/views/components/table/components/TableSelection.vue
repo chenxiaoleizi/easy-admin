@@ -1,11 +1,12 @@
 <template>
-  <a-typography-paragraph> useTablePagination 组合式函数的使用 </a-typography-paragraph>
-  <a-table
-    rowKey="id"
-    :columns="columns"
-    :rowSelection="rowSelection"
-    :dataSource="dataSource"
-  ></a-table>
+  <a-card title="useTableRowSelection 组合式函数">
+    <a-table
+      rowKey="id"
+      :columns="columns"
+      :rowSelection="rowSelection"
+      :dataSource="dataSource"
+    ></a-table>
+  </a-card>
 </template>
 
 <script setup lang="ts">
