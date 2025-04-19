@@ -116,8 +116,9 @@ export const isTel = (value: string) => {
  */
 export const isJson = (value: any) => {
   try {
-    JSON.parse(value);
-    return true;
+    const result = JSON.parse(value);
+    if (result && typeof result === "object") return true;
+    return false;
   } catch (error) {
     return false;
   }
