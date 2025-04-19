@@ -80,7 +80,7 @@ function auth() {
       children: [
         {
           path: "/components/table",
-          name: "树",
+          name: "表格",
           id: 11,
         },
         {
