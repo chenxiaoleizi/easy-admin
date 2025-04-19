@@ -8,10 +8,12 @@
     </ul>
     <TablePagination />
     <TableSelection />
+    <TableScroll />
   </div>
 </template>
 
 <script setup lang="ts">
 import TablePagination from "./components/TablePagination.vue";
 import TableSelection from "./components/TableSelection.vue";
+import TableScroll from "./components/TableScroll.vue";
 </script>

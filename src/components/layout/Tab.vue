@@ -103,6 +103,9 @@ watch(
 </script>
 
 <style scoped>
+.tabs {
+  background: white;
+}
 :deep(.ant-tabs-content-holder) {
   display: none;
 }
