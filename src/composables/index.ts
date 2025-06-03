@@ -162,3 +162,43 @@ export function useTableScroll(tableRef: Ref, onScroll: () => void) {
     });
   });
 }
+
+/**
+ * 是否滚动到底部的组合式函数
+ * @param scrollContainerRef 滚动元素
+ * @param onBottom 滚到底部的回调函数
+ * @returns
+ */
+export function useScrollToBottom(scrollContainerRef: Ref, onBottom?: () => void) {
+  const isAtBottom = ref(false);
+  function handleScroll() {
+    if (!scrollContainerRef.value) return;
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight#determine_if_an_element_has_been_totally_scrolled
+    const { scrollHeight, clientHeight, scrollTop } = scrollContainerRef.value;
+    if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
+      console.log("滚动到底部了");
+      isAtBottom.value = true;
+      onBottom && onBottom();
+    } else {
+      isAtBottom.value = false;
+    }
+  }
+
+  // 添加监听
+  onMounted(async () => {
+    await nextTick();
+    if (scrollContainerRef.value) {
+      scrollContainerRef.value.addEventListener("scroll", handleScroll);
+    }
+  });
+  // 移除监听
+  onBeforeUnmount(async () => {
+    await nextTick();
+    if (scrollContainerRef.value) {
+      scrollContainerRef.value.removeEventListener("scroll");
+    }
+  });
+
+  return { isAtBottom };
+}

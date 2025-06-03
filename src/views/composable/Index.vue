@@ -8,9 +8,7 @@
         <SMS />
       </a-col>
       <a-col :span="8">
-        <a-card title="Card title" :bordered="false">
-          <p>card content</p>
-        </a-card>
+        <ScrollToBottom />
       </a-col>
     </a-row>
   </div>
@@ -19,6 +17,7 @@
 <script setup lang="ts">
 import Clock from "./conponents/Clock.vue";
 import SMS from "./conponents/SMS.vue";
+import ScrollToBottom from "./conponents/ScrollToBottom.vue";
 import { isJson } from "@/utils/validate";
 
 console.log(isJson("{1: 1}"));
