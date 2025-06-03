@@ -2,12 +2,37 @@ import axios from "axios";
 import { useUserStore } from "../store/user";
 import { message } from "ant-design-vue";
 
+// 取消请求的管理器
+const abortControllerMap = new Map<string, AbortController>();
+function addAbortController(url: string, abortController: AbortController) {
+  abortControllerMap.set(url, abortController);
+}
+export function cancelRequest(url?: string) {
+  if (url) {
+    const target = abortControllerMap.get(url);
+    if (!target) return;
+    target.abort();
+  } else {
+    for (const [, controller] of abortControllerMap) {
+      controller.abort();
+    }
+    abortControllerMap.clear();
+  }
+}
+
 // 创建实例
 const instance = axios.create();
 
 // 请求拦截器
 instance.interceptors.request.use(
   function (config) {
+    if (config.url) {
+      const controller = new AbortController();
+      const signal = controller.signal;
+      addAbortController(config.url, controller);
+      config.signal = signal;
+    }
+
     const userStore = useUserStore();
     const { token } = userStore;
     if (token) {

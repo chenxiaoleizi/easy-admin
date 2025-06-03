@@ -4,6 +4,7 @@ import dynamicRoutes from "./dynamic";
 import { useUserStore } from "@/store/user";
 import { usePermissionStore } from "@/store/permission";
 import { message } from "ant-design-vue";
+import { cancelRequest } from "@/api/http";
 
 const router = createRouter({
   routes: [...staticRoutes, ...dynamicRoutes],
@@ -11,6 +12,7 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from) => {
+  cancelRequest();
   const userStore = useUserStore();
   const permissionStore = usePermissionStore();
 
