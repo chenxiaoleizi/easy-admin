@@ -7,12 +7,8 @@
         v-model:checkedKeys="checkedKeys"
         checkable
         :tree-data="treeData"
-      >
-        <template #title="{ title, key }">
-          <span v-if="key === '0-0-1-0'" style="color: #1890ff">{{ title }}</span>
-          <template v-else>{{ title }}</template>
-        </template>
-      </a-tree>
+        :fieldNames="{ title: 'name', key: 'id' }"
+      />
     </div>
   </a-modal>
 </template>
@@ -21,24 +17,84 @@
 import { ref, watch } from "vue";
 import type { TreeProps } from "ant-design-vue";
 
-const treeData: TreeProps["treeData"] = [
+const treeData = [
   {
-    title: "parent 1",
-    key: "0-0",
+    id: "/",
+    name: "首页",
+    icon: "home",
+    path: "/",
     children: [
       {
-        title: "parent 1-0",
-        key: "0-0-0",
-        disabled: true,
-        children: [
-          { title: "leaf", key: "0-0-0-0", disableCheckbox: true },
-          { title: "leaf", key: "0-0-0-1" },
-        ],
+        id: "/home",
+        name: "首页",
+        icon: "home",
+        path: "/",
+      },
+    ],
+  },
+  {
+    id: "/system",
+    name: "系统设置",
+    icon: "settings",
+    path: "/system",
+    children: [
+      {
+        id: "/system/userList",
+        name: "用户列表",
+        icon: "users",
+        path: "/system/userList",
       },
       {
-        title: "parent 1-1",
-        key: "0-0-1",
-        children: [{ key: "0-0-1-0", title: "sss" }],
+        id: "/system/roleList",
+        name: "角色列表",
+        icon: "role",
+        path: "/system/roleList",
+      },
+      {
+        id: "/system/menuList",
+        name: "菜单列表",
+        icon: "menu",
+        path: "/system/menuList",
+      },
+    ],
+  },
+  {
+    id: "/composable",
+    name: "组合式函数",
+    icon: "home",
+    path: "/",
+    children: [
+      {
+        id: "/composable",
+        name: "组合式函数",
+        icon: "home",
+        path: "/composable",
+      },
+    ],
+  },
+  {
+    id: "/components",
+    name: "组件",
+    icon: "home",
+    path: "/components",
+    children: [
+      {
+        id: "/components/table",
+        name: "表格",
+        icon: "home",
+        path: "/components/table",
+      },
+      {
+        id: "/components/tree",
+        name: "树",
+        icon: "home",
+        path: "/components/tree",
+      },
+      {
+        id: "/components/upload",
+        name: "上传",
+        icon: "home",
+        path: "/components/upload",
       },
     ],
   },

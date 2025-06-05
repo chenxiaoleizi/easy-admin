@@ -6,9 +6,9 @@
       </a-form-item>
     </TableQuery>
     <TableHeader>
-      <template #left>用户列表</template>
+      <template #left>角色列表</template>
       <template #right>
-        <a-button type="primary" @click="handleAdd">添加用户</a-button>
+        <a-button type="primary" @click="handleAdd">添加角色</a-button>
       </template>
     </TableHeader>
     <a-table :columns="columns" :dataSource="dataSource" :pagination="pagination">
@@ -41,28 +41,26 @@ import Assign from "./components/Assign.vue";
 const columns = [
   {
     title: "角色名称",
-    dataIndex: "rolename",
-    key: "rolename",
+    dataIndex: "name",
+    key: "name",
     align: "center",
   },
   {
-    title: "角色状态",
-    dataIndex: "state",
-    key: "state",
+    title: "角色描述",
+    dataIndex: "description",
+    key: "description",
     align: "center",
-    customRender({ text }) {
-      return text === 0 ? "禁用" : "启用";
-    },
   },
   {
-    title: "备注",
-    dataIndex: "remark",
-    key: "remark",
+    title: "创建时间",
+    dataIndex: "createTime",
+    key: "createTime",
     align: "center",
   },
   {
     title: "操作",
     dataIndex: "operation",
+    align: "center",
     width: 200,
   },
 ];
@@ -85,6 +83,7 @@ function fetchData() {
   };
   getRoleList().then((res) => {
     const list = res?.list ?? [];
+    console.log(list);
     dataSource.value = list;
     pagination.total = 100;
   });

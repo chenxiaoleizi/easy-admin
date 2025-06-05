@@ -1,4 +1,5 @@
 import { userList } from "./mockData/user.ts";
+import { roleList } from "./mockData/role.ts";
 
 function login() {
   return {
@@ -115,36 +116,6 @@ function auth() {
     code: 0,
     message: "",
     data,
-  };
-}
-
-function roleList() {
-  return {
-    code: 0,
-    message: "",
-    data: {
-      total: 100,
-      list: [
-        {
-          id: "1",
-          rolename: "超级管理员",
-          remark: "超级管理员拥有所有权限",
-          state: 1,
-        },
-        {
-          id: "2",
-          rolename: "管理员",
-          remark: "普通管理员可增删改查",
-          state: 1,
-        },
-        {
-          id: "3",
-          rolename: "普通用户",
-          remark: "普通用户可部分增删改查",
-          state: 1,
-        },
-      ],
-    },
   };
 }
 
