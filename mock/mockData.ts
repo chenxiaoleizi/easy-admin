@@ -1,3 +1,5 @@
+import { userList } from "./mockData/user.ts";
+
 function login() {
   return {
     code: 0,
@@ -113,36 +115,6 @@ function auth() {
     code: 0,
     message: "",
     data,
-  };
-}
-
-function userList() {
-  return {
-    code: 0,
-    message: "",
-    data: {
-      total: 100,
-      list: [
-        {
-          id: "1",
-          username: "爱德华·诺顿",
-          account: "Edward Harrison Norton",
-          state: 1,
-        },
-        {
-          id: "2",
-          username: "布拉德·皮特",
-          account: "Brad Pitt",
-          state: 1,
-        },
-        {
-          id: "3",
-          username: "海伦娜·伯翰·卡特",
-          account: "Helena Bonham Carter",
-          state: 1,
-        },
-      ],
-    },
   };
 }
 

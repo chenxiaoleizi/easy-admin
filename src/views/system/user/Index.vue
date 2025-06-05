@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TableQuery :query-form-state="queryForm">
+    <TableQuery :query-form-state="queryForm" @query="queryData">
       <a-form-item label="用户名" name="username">
         <a-input v-model:value="queryForm.username" placeholder="请输入用户名"></a-input>
       </a-form-item>
@@ -11,15 +11,15 @@
     <TableHeader>
       <template #left>用户列表</template>
       <template #right>
-        <a-button type="primary">添加用户</a-button>
+        <a-button type="primary" @click="handleAdd">添加用户</a-button>
       </template>
     </TableHeader>
     <a-table :columns="columns" :dataSource="dataSource" :pagination="pagination">
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'operation'">
-          <a-button type="link" @click="handleEdit(record)">编辑</a-button>
+          <a-button class="px-0" type="link" @click="handleEdit(record)">编辑</a-button>
           <a-divider type="vertical" />
-          <a-button type="link" danger>删除</a-button>
+          <a-button class="px-0" type="link" danger @click="handleDelete(record)">删除</a-button>
         </template>
       </template>
     </a-table>
@@ -30,6 +30,7 @@
 
 <script setup lang="ts">
 import { reactive, ref } from "vue";
+import { Modal, message } from "ant-design-vue";
 import { useTablePagination } from "@/composables/index";
 import { getUserList } from "@/api/user";
 import TableQuery from "@/components/table/TableQuery.vue";
@@ -39,21 +40,21 @@ import Edit from "./components/Edit.vue";
 
 const columns = [
   {
-    title: "编号",
-    dataIndex: "id",
-    key: "id",
-    align: "center",
-  },
-  {
     title: "用户名",
-    dataIndex: "username",
+    dataIndex: "name",
     key: "username",
     align: "center",
   },
   {
-    title: "账号",
-    dataIndex: "account",
-    key: "account",
+    title: "手机号",
+    dataIndex: "phone",
+    key: "phone",
+    align: "center",
+  },
+  {
+    title: "性别",
+    dataIndex: "gender",
+    key: "gender",
     align: "center",
   },
   {
@@ -63,9 +64,15 @@ const columns = [
     align: "center",
   },
   {
-    title: "状态",
-    dataIndex: "state",
-    key: "state",
+    title: "邮箱",
+    dataIndex: "email",
+    key: "email",
+    align: "center",
+  },
+  {
+    title: "创建时间",
+    dataIndex: "createTime",
+    key: "createTime",
     align: "center",
   },
   {
@@ -107,6 +114,16 @@ function handleAdd() {
 }
 function handleEdit(record: any) {
   editRef.value.showModal(record);
+}
+function handleDelete(record: any) {
+  Modal.confirm({
+    title: "确定要删除吗？",
+    content: "删除后不可恢复",
+    onOk() {
+      message.success("删除成功");
+      fetchData();
+    },
+  });
 }
 
 fetchData();

@@ -1,0 +1,65 @@
+export function userList() {
+  return {
+    code: 0,
+    message: "",
+    data: {
+      total: 100,
+      list: [
+        {
+          id: 1,
+          name: "王伟",
+          gender: "男",
+          age: 28,
+          phone: "13832019485",
+          email: "wangwei28@example.com",
+          createTime: "2023-11-15",
+        },
+        {
+          id: 2,
+          name: "李娜",
+          gender: "女",
+          age: 32,
+          phone: "13987542136",
+          email: "lina32@example.com",
+          createTime: "2024-01-20",
+        },
+        {
+          id: 3,
+          name: "张磊",
+          gender: "男",
+          age: 25,
+          phone: "13729837456",
+          email: "zhanglei25@example.com",
+          createTime: "2024-03-12",
+        },
+        {
+          id: 4,
+          name: "刘芳",
+          gender: "女",
+          age: 30,
+          phone: "13673829102",
+          email: "liufang30@example.com",
+          createTime: "2023-08-05",
+        },
+        {
+          id: 5,
+          name: "陈杰",
+          gender: "男",
+          age: 35,
+          phone: "13818273645",
+          email: "chenjie35@example.com",
+          createTime: "2023-12-18",
+        },
+        {
+          id: 50,
+          name: "丁娜",
+          gender: "女",
+          age: 26,
+          phone: "13638472034",
+          email: "dingna26@example.com",
+          createTime: "2024-05-05",
+        },
+      ],
+    },
+  };
+}
