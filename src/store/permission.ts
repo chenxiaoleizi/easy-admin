@@ -13,7 +13,12 @@ type PermissionItem = {
   children?: PermissionItem[];
 };
 
-function createMap(input: PermissionItem[]) {
+/**
+ * 创建 permission map
+ * @param input 用户的权限树
+ * @returns
+ */
+function createPermissionMap(input: PermissionItem[]) {
   const map = new Map();
 
   const queue = [...input];
@@ -30,6 +35,11 @@ function createMap(input: PermissionItem[]) {
   return map;
 }
 
+/**
+ * 创建左侧菜单数据
+ * @param input 用户的权限树
+ * @returns
+ */
 function createMenuItems(input?: PermissionItem[]): any[] | null {
   if (!input) return null;
 
@@ -45,11 +55,11 @@ function createMenuItems(input?: PermissionItem[]): any[] | null {
   });
 }
 
-function removeNoPermissionRoute(router: Router, map: Map<string, any>) {
+function removeNoPermissionRoute(router: Router, permissionMap: Map<string, any>) {
   const routes = router.getRoutes();
   routes.forEach((route) => {
     const { path, name } = route;
-    if (!map.has(path) && !whiteList.includes(path)) {
+    if (!permissionMap.has(path) && !whiteList.includes(path)) {
       router.removeRoute(name as string);
     }
   });
@@ -94,7 +104,7 @@ export const usePermissionStore = defineStore("permission", {
       const data = res ?? [];
 
       // 生成权限 map
-      const map = createMap(data);
+      const map = createPermissionMap(data);
       this.setPermissionMap(map);
 
       // 生成左侧菜单

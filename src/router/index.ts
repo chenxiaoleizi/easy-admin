@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import staticRoutes from "./static";
-import dynamicRoutes from "./dynamic";
+import staticRoutes from "./routes/static";
+import dynamicRoutes from "./routes/dynamic";
 import { useUserStore } from "@/store/user";
 import { usePermissionStore } from "@/store/permission";
 import { message } from "ant-design-vue";
