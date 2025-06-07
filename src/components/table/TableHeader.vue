@@ -1,6 +1,6 @@
 <template>
   <div class="easy-table-header">
-    <span class="l">
+    <span class="left">
       <slot name="left"></slot>
     </span>
     <span>
@@ -16,10 +16,8 @@
   justify-content: space-between;
   margin: 12px 20px 8px;
 }
-.l {
-  font-weight: 600;
+.easy-table-header .left {
+  font-weight: 500;
   font-size: 16px;
-  color: #000000;
-  line-height: 19px;
 }
 </style>

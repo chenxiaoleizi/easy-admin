@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 :root {
-  /* font-family: Noto Sans, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: Noto Sans, PingFang SC, microsoft yahei, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -15,9 +16,7 @@
 
   --header-height: 54px;
 }
-* {
-  font-family: Noto Sans, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
-}
+
 html,
 body {
   width: 100%;
