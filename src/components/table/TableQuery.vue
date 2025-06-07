@@ -1,6 +1,6 @@
 <template>
   <div class="easy-table-query">
-    <a-form ref="formRef" layout="inline" :model="queryFormState">
+    <a-form ref="formRef" layout="inline" :model="queryFormState" autocomplete="off">
       <slot></slot>
       <a-form-item>
         <a-button @click="handleReset">重置</a-button>
@@ -35,7 +35,7 @@ function handleQuery() {
   flex-wrap: wrap;
   align-items: center;
   background: white;
-  padding: 10px 10px 0;
+  /* padding: 10px 10px 0; */
 }
 .easy-table-query :deep(.ant-form-item) {
   margin-bottom: 10px;

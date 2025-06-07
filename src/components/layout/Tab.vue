@@ -105,6 +105,7 @@ watch(
 <style scoped>
 .tabs {
   background: white;
+  padding: 0 16px;
 }
 :deep(.ant-tabs-content-holder) {
   display: none;

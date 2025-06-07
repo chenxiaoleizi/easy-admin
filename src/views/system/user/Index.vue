@@ -1,28 +1,30 @@
 <template>
   <div>
-    <TableQuery :query-form-state="queryForm" @query="queryData">
-      <a-form-item label="用户名" name="username">
-        <a-input v-model:value="queryForm.username" placeholder="请输入用户名"></a-input>
-      </a-form-item>
-      <a-form-item label="账号" name="account">
-        <a-input v-model:value="queryForm.account" placeholder="请输入账号"></a-input>
-      </a-form-item>
-    </TableQuery>
-    <TableHeader>
-      <template #left>用户列表</template>
-      <template #right>
-        <a-button type="primary" @click="handleAdd">添加用户</a-button>
-      </template>
-    </TableHeader>
-    <a-table :columns="columns" :dataSource="dataSource" :pagination="pagination">
-      <template #bodyCell="{ column, record }">
-        <template v-if="column.dataIndex === 'operation'">
-          <a-button class="px-0" type="link" @click="handleEdit(record)">编辑</a-button>
-          <a-divider type="vertical" />
-          <a-button class="px-0" type="link" danger @click="handleDelete(record)">删除</a-button>
+    <a-card>
+      <TableQuery :query-form-state="queryForm" @query="queryData">
+        <a-form-item label="用户名" name="username">
+          <a-input v-model:value="queryForm.username" placeholder="请输入用户名"></a-input>
+        </a-form-item>
+        <a-form-item label="账号" name="account">
+          <a-input v-model:value="queryForm.account" placeholder="请输入账号"></a-input>
+        </a-form-item>
+      </TableQuery>
+      <TableHeader>
+        <template #left>用户列表</template>
+        <template #right>
+          <a-button type="primary" @click="handleAdd">添加用户</a-button>
         </template>
-      </template>
-    </a-table>
+      </TableHeader>
+      <a-table :columns="columns" :dataSource="dataSource" :pagination="pagination">
+        <template #bodyCell="{ column, record }">
+          <template v-if="column.dataIndex === 'operation'">
+            <a-button class="px-0" type="link" @click="handleEdit(record)">编辑</a-button>
+            <a-divider type="vertical" />
+            <a-button class="px-0" type="link" danger @click="handleDelete(record)">删除</a-button>
+          </template>
+        </template>
+      </a-table>
+    </a-card>
     <Add ref="addRef"></Add>
     <Edit ref="editRef"></Edit>
   </div>
