@@ -1,5 +1,5 @@
 <template>
-  <a-layout-sider v-model:collapsed="collapsed" class="side shadow-md" theme="light" :width="256">
+  <a-layout-sider v-model:collapsed="collapsed" class="side shadow-md" theme="light" :width="200">
     <div class="logo">LOGO</div>
     <div class="menus">
       <a-menu
@@ -55,7 +55,7 @@ setKeys();
 
 <style scoped>
 .side {
-  width: 256px;
+  width: 200px;
   position: relative;
 }
 .logo {
