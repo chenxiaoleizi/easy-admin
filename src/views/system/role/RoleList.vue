@@ -1,27 +1,29 @@
 <template>
   <div>
-    <TableQuery :query-form-state="queryForm">
-      <a-form-item label="角色名" name="username">
-        <a-input v-model:value="queryForm.username" placeholder="请输入角色名"></a-input>
-      </a-form-item>
-    </TableQuery>
-    <TableHeader>
-      <template #left>角色列表</template>
-      <template #right>
-        <a-button type="primary" @click="handleAdd">添加角色</a-button>
-      </template>
-    </TableHeader>
-    <a-table :columns="columns" :dataSource="dataSource" :pagination="pagination">
-      <template #bodyCell="{ column, record }">
-        <template v-if="column.dataIndex === 'operation'">
-          <a-space>
-            <a-button class="px-0" type="link" @click="handleEdit(record)">编辑</a-button>
-            <a-button class="px-0" type="link" @click="handleAssign(record)">分配权限</a-button>
-            <a-button class="px-0" type="link" danger>删除</a-button>
-          </a-space>
+    <a-card>
+      <TableQuery :query-form-state="queryForm">
+        <a-form-item label="角色名" name="username">
+          <a-input v-model:value="queryForm.username" placeholder="请输入角色名"></a-input>
+        </a-form-item>
+      </TableQuery>
+      <TableHeader>
+        <template #left>角色列表</template>
+        <template #right>
+          <a-button type="primary" @click="handleAdd">添加角色</a-button>
         </template>
-      </template>
-    </a-table>
+      </TableHeader>
+      <a-table :columns="columns" :dataSource="dataSource" :pagination="pagination">
+        <template #bodyCell="{ column, record }">
+          <template v-if="column.dataIndex === 'operation'">
+            <a-space>
+              <a-button class="px-0" type="link" @click="handleEdit(record)">编辑</a-button>
+              <a-button class="px-0" type="link" @click="handleAssign(record)">分配权限</a-button>
+              <a-button class="px-0" type="link" danger>删除</a-button>
+            </a-space>
+          </template>
+        </template>
+      </a-table>
+    </a-card>
     <Add ref="addRef"></Add>
     <Edit ref="editRef"></Edit>
     <Assign ref="assignRef"></Assign>

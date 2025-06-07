@@ -1,16 +1,18 @@
 <template>
   <div>
-    <a-table :columns="columns" :dataSource="dataSource" :pagination="false">
-      <template #bodyCell="{ column, record }">
-        <template v-if="column.dataIndex === 'operation'">
-          <a-button class="px-0" type="link" @click="handleAdd(record)">添加</a-button>
-          <a-divider type="vertical" />
-          <a-button class="px-0" type="link" @click="handleEdit(record)">编辑</a-button>
-          <a-divider type="vertical" />
-          <a-button class="px-0" type="link" danger>删除</a-button>
+    <a-card>
+      <a-table :columns="columns" :dataSource="dataSource" :pagination="false">
+        <template #bodyCell="{ column, record }">
+          <template v-if="column.dataIndex === 'operation'">
+            <a-button class="px-0" type="link" @click="handleAdd(record)">添加</a-button>
+            <a-divider type="vertical" />
+            <a-button class="px-0" type="link" @click="handleEdit(record)">编辑</a-button>
+            <a-divider type="vertical" />
+            <a-button class="px-0" type="link" danger>删除</a-button>
+          </template>
         </template>
-      </template>
-    </a-table>
+      </a-table>
+    </a-card>
     <MenuModal ref="menuModalRef"></MenuModal>
   </div>
 </template>
