@@ -143,3 +143,18 @@ export const isEnglish = (value: string) => {
   const reg = /^[a-zA-Z]+$/;
   return reg.test(value);
 };
+
+/**
+ *
+ * @param value JSON 字符串
+ * @returns {boolean}
+ */
+export function isValidJSON(value: string) {
+  try {
+    const result = JSON.parse(value);
+    if (result && typeof result === "object") return true;
+    return false;
+  } catch {
+    return false;
+  }
+}
