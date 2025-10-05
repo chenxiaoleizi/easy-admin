@@ -202,3 +202,45 @@ export function useScrollToBottom(scrollContainerRef: Ref, onBottom?: () => void
 
   return { isAtBottom };
 }
+
+/**
+ * 控制并发数量的函数
+ * @param fn 异步函数
+ * @param concurrency 并发数量
+ * @returns
+ */
+export function useQueue<T>(fn: (item: T) => Promise<any>, concurrency = 1) {
+  const queue: T[] = [];
+  const taskMap = new Map();
+
+  function createTask(queueItem: T) {
+    const task = fn(queueItem);
+    taskMap.set(task, task);
+
+    task.finally(() => {
+      // 移除已经完成的任务
+      taskMap.delete(task);
+
+      // 创建新的任务
+      if (queue.length > 0) {
+        const item = queue.shift();
+        if (item) createTask(item);
+      }
+    });
+  }
+  function start() {
+    const size = taskMap.size;
+    const diff = concurrency - size;
+    if (diff === 0) return;
+
+    const items = queue.splice(0, concurrency);
+    items.forEach((item) => createTask(item));
+  }
+  function addToQueue(item: T) {
+    const isEmpty = queue.length === 0;
+    queue.push(item);
+    if (isEmpty) setTimeout(() => start()); // 放在宏任务队列中，等addToQueue完成后执行
+  }
+
+  return { addToQueue };
+}
